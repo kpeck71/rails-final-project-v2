@@ -1,4 +1,8 @@
 <h2><%= @recipe.name %></h2>
+<% @recipe.categories.each do |category| %>
+  <h3><% link_to category.name, category_path(category) %></h3>
+  <br>
+<% end %>
 <% @recipe.ingredients.each do |ingredient| %>
   <h3><% ingredient.name %></h3>
   <h3><% ingredient.description %></h3>
