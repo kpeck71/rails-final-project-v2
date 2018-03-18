@@ -1,0 +1,2 @@
+class CategoryRecipes < ApplicationRecord
+end
