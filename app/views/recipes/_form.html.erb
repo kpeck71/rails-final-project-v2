@@ -9,6 +9,8 @@
          <%= ingredients_form.text_field :name %>
          <%= ingredients_form.label :description %>
          <%= ingredients_form.text_field :description %>
+         <%= ingredients_form.check_box :_destroy %>
+         <%= ingredients_form.label :_destroy, "Delete" %>
          <br>
      <% end %>
   <br></br>
