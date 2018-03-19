@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+Add JS to new/edit form with http://railscasts.com/episodes/196-nested-model-form-revised?autoplay=true

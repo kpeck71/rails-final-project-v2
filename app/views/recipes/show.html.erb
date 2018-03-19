@@ -4,7 +4,9 @@
 <% end %>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
-  <li><%= ingredient.name %>, <%= ingredient.description %></li>
+  <li><%= ingredient.name %></li>
   <br>
 <% end %>
 </ul>
+<h3>Instructions:</h3>
+<p><%= @recipe.instructions %> </p>
