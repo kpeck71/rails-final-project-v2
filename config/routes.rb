@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :recipes
   end
-  
+
   resources :recipes
   resources :categories
   resources :ingredients
