@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   root to: "recipes#index"
 
+  resources :users do
+    resources :recipes
+  end
+  
   resources :recipes
   resources :categories
   resources :ingredients
