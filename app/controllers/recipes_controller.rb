@@ -37,14 +37,4 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
-  # def set_category
-  #   #raise recipe_params.inspect
-  #   if params[:recipe][:categories] != nil
-  #     #category = Category.find_or_create_by(name: params[:recipe][:categories][:name])
-  #     category = Category.find_or_create_by(recipe_params[:categories])
-  #     @recipe.categories << category
-  #     @recipe.save
-  #   end
-  #end
-
 end
