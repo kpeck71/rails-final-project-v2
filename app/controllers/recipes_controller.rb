@@ -9,8 +9,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if params[:recipe][:categories]
-      category = Category.find_or_create_by(name: params[:recipe][:categories][:name])
-      @recipe.categories << category
+      set_category
     end
     if @recipe.save
       #raise @recipe.inspect
@@ -28,6 +27,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+    set_category
     @recipe.update(recipe_params)
     redirect_to @recipe
   end
@@ -39,6 +39,12 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def set_category
+    category = Category.find_or_create_by(name: params[:recipe][:categories][:name])
+    @recipe.categories << category
+    @recipe.save
   end
 
 end
