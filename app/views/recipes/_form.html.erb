@@ -4,7 +4,7 @@
   <%= f.text_field :name %><br></br>
   Ingredients:
   <br></br>
-     <%= f.fields_for :ingredients do |ingredients_form| %>
+     <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_form| %>
          <%= ingredients_form.label :name %>
          <%= ingredients_form.text_field :name %>
          <br>
