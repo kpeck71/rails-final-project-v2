@@ -14,15 +14,20 @@ class Recipe < ApplicationRecord
     self.ingredients.destroy_all
 
     ingredients_attributes.values.each do |ingredient_attribute|
-       ingredient = Ingredient.find_or_create_by(ingredient_attribute) unless ingredient_attribute[:name].empty?
-       self.ingredients << ingredient
+       if !ingredient_attribute[:name].empty? && ingredient = Ingredient.find_or_create_by(ingredient_attribute)
+         self.ingredients << ingredient
+       end
     end
   end
+#Does not seem DRY
 
   def categories_attributes=(categories_attributes)
+    self.categories.destroy_all
+
     categories_attributes.values.each do |category_attribute|
-       category = Category.find_or_create_by(category_attribute) unless category_attribute[:name].empty?
+      if !category_attribute[:name].empty? && category = Category.find_or_create_by(category_attribute)
        self.categories << category
+      end
     end
 
   end
