@@ -12,7 +12,11 @@ Recipe has ingredients
 User has unique email; User has a name
 - [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 /categories/most_recipes
-- [ ] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
+https://blog.codeship.com/creating-advanced-active-record-db-queries-arel/
+https://github.com/rails/arel
+http://api.rubyonrails.org/v5.0/classes/ActiveRecord/Scoping/Named/ClassMethods.html#method-i-scope
+
+- [x] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
 - [ ] Include signup (how e.g. Devise)
 - [ ] Include login (how e.g. Devise)
 - [ ] Include logout (how e.g. Devise)
@@ -27,3 +31,9 @@ Confirm:
 - [ ] Limited logic in controllers
 - [ ] Views use helper methods if appropriate
 - [ ] Views use partials if appropriate
+
+
+Blog notes:
+New technology, old problem
+Taking a break for weeks and trying to catch up
+Scope method
