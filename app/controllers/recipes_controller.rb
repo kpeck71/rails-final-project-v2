@@ -7,7 +7,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
       #raise @recipe.inspect
@@ -22,6 +21,13 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    if @recipe.user == current_user
+      render 'edit'
+    else
+      redirect_to root_path
+      flash[:notice] = "You are not authorized to edit another user's recipe."
+    end
+
   end
 
   def update
