@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
-      raise @user.inspect
+      #raise @user.inspect
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Thank you for signing up!"
       #is that where we should send new users? recipe index?
     else
-      raise @user.errors.full_messages.inspect
+      flash[:notice] = "Error here"
       render 'new'
 
     end
