@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+
   end
 
   def create
@@ -11,7 +12,7 @@ class SessionsController < ApplicationController
       #need error message
       #flash.now.alert = "Email or password is invalid"
       #flash[:notice] = "User not correct or not found"
-      render "new"
+      renew 'new'
     end
   end
 

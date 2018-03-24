@@ -10,8 +10,7 @@ class UsersController < ApplicationController
       redirect_to root_path #, notice: "Thank you for signing up!"
       #is that where we should send new users? recipe index?
     else
-      #redirect_to new_user_path
-      render "new"
+      render 'new'
     end
   end
 
