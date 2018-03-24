@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
     else
       #need error message
       #flash.now.alert = "Email or password is invalid"
-      #flash[:notice] = "User not correct or not found"
-      renew 'new'
+      flash[:notice] = "User not correct or not found"
+      render 'new'
     end
   end
 
