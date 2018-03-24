@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     else
       flash[:notice] = "Error here"
       render 'new'
-
     end
   end
 

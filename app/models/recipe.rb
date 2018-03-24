@@ -22,8 +22,6 @@ class Recipe < ApplicationRecord
 #Does not seem DRY
 
   def categories_attributes=(categories_attributes)
-    self.categories.destroy_all
-
     categories_attributes.values.each do |category_attribute|
       if !category_attribute[:name].empty? && category = Category.find_or_create_by(category_attribute)
        self.categories << category
