@@ -3,16 +3,15 @@ class SessionsController < ApplicationController
 
   end
 
-  def callback
-    if user = User.from_omniauth(env["omniauth.auth"])
-      flash[:success] = 'Signed in by Facebook successfully'
-      session[:user_id] = user.id
-      redirect_to root_path
-    else
-      flash[:error] = "Error while signing in by Facebook. Let's register"
-      redirect_to new_user_path
-    end
-  end
+  def create_with_facebook
+   @user = User.from_omniauth(request.env["omniauth.auth"])
+     if @user
+       session[:user_id] = @user.id
+       redirect_to user_path(@user)
+     else
+       redirect_to '/login', flash[:notice] = "Oops, something went wrong here. Please try again."}
+     end
+   end
 
   def create
     user = User.find_by(email: params[:email])
