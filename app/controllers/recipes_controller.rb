@@ -18,6 +18,12 @@ class RecipesController < ApplicationController
   end
 
   def show
+    if current_user
+      render 'show'
+    else
+      redirect_to root_path
+      flash[:notice] = "Only logged-in users can see full recipes."
+    end
   end
 
   def edit
