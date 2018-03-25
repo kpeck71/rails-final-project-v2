@@ -15,7 +15,7 @@ class User < ApplicationRecord
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
-      user.password = SecureRandom.urlsafe_base64(n=6) #needed to generate random password to override "password can't be blank" error
+      user.password = SecureRandom.urlsafe_base64(n=6) # generate random password to override blank password error
       user.save!
     end
   end
