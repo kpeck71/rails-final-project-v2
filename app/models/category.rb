@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
   has_many :category_recipes
   has_many :recipes, through: :category_recipes
+  validates :name, presence: true
 
   # def most_popular
   #   scope :most_popular, -> { joins(:category_recipes).where('category_id.count.maximum') }

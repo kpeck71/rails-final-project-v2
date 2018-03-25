@@ -2,8 +2,13 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update]
 
   def new
-    @recipe = Recipe.new
-    5.times{@recipe.ingredients.build}
+    if current_user
+      @recipe = Recipe.new
+      5.times{@recipe.ingredients.build}
+    else
+      redirect_to root_path
+      flash[:notice] = "Only logged-in users can create recipes."
+    end
   end
 
   def create
