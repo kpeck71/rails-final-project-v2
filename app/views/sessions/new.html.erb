@@ -12,5 +12,7 @@
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
     <div class="btn btn-primary"><%= submit_tag "Log In" %></div>
-    
+
   <% end %>
+
+<p>   <%= link_to('Login with Facebook!', '/auth/:facebook/callback') %></p>
