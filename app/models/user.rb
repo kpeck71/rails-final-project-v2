@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_secure_password
   has_many :recipes
+
+  has_secure_password
 
   validates_presence_of :name, :email, if: :regular_login
   validates_uniqueness_of :email, if: :regular_login
@@ -11,6 +12,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
+    raise auth.inspect
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
