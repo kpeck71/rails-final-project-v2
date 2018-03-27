@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :ingredients
 
   resources :users do
-    resources :recipes
+    resources :recipes, only: [:index, :show]
   end
 
   get '/auth/facebook' => 'sessions#create_with_facebook'
