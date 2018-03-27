@@ -1,0 +1,9 @@
+<h3>User: <%= @user.name %>, <%= @user.email %> </h3>
+<% if !@user.recipes.empty? %>
+  <ul> <% @user.recipes.each do |recipe| %>
+    <li><%= link_to recipe.name, recipe_path(recipe) %> </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p><%= "This user has no recipes yet." %></p>
+<% end %>

@@ -7,13 +7,16 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions
-  resources :recipes
+  resources :recipes #, only: [:new, :create, :update, :destroy]
   resources :categories
   resources :ingredients
 
-  resources :users do
-    resources :recipes, only: [:index, :show]
-  end
+  # resources :users do
+  #   resources :recipes, only: [:index, :show]
+  # end
+
+  get 'users/:user_id/recipes', to: 'users#recipes'
+
 
   get '/auth/facebook' => 'sessions#create_with_facebook'
 
