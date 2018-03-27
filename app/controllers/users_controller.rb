@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: "Thank you for signing up!"
       #is that where we should send new users? recipe index?
     else
-      flash[:notice] = "Error here"
+      flash[:notice] = @user.errors.full_messages
       render 'new'
     end
   end
