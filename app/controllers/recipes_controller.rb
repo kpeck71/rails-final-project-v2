@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   def new
     if current_user
       @recipe = Recipe.new
-      5.times{@recipe.ingredients.build}
+      10.times{@recipe.ingredients.build}
     else
       redirect_to root_path
       flash[:notice] = "Only logged-in users can create recipes."
@@ -33,17 +33,21 @@ class RecipesController < ApplicationController
 
   def edit
     if @recipe.user == current_user
+      5.times{@recipe.ingredients.build}
       render 'edit'
+
     else
       redirect_to root_path
       flash[:notice] = "You are not authorized to edit another user's recipe."
     end
-
   end
 
   def update
     @recipe.update(recipe_params)
     redirect_to @recipe
+  end
+
+  def create_category
   end
 
   private
