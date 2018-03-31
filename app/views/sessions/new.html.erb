@@ -11,8 +11,8 @@
     <div class="form-control">
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
-    <div class="btn btn-primary"><%= submit_tag "Log In" %></div>
-
+    <br></br>
+    <%= submit_tag "Log In", class: "btn btn-primary" %>
   <% end %>
-
-<p>   <%= link_to('Login with Facebook!', '/auth/facebook') %></p>
+<br></br>
+<%= link_to('Login with Facebook!', '/auth/facebook') %>
