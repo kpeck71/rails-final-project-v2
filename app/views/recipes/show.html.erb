@@ -8,7 +8,7 @@
 <h3>Ingredients:</h3>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
-  <li><%= ingredient.name %></li>
+  <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
   <br>
 <% end %>
 </ul>
