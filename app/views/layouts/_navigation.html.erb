@@ -2,8 +2,6 @@
   <% if current_user %>
   Logged in as <%= link_to current_user.email, user_path(current_user) %>
   | <%= link_to 'Home', recipes_path %>
-  | <%= link_to 'See All Categories', categories_path %>
-  | <%= link_to 'Create New Recipe', new_recipe_path %>
   |  <%= link_to "Log Out", logout_path %>
 
   <% else %>
