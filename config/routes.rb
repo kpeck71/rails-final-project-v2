@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
 
   get '/auth/facebook' => 'sessions#create_with_facebook'
+  get '/auth/google_oauth2' => 'sessions#create_with_google'
 
 end
 

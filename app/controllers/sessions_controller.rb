@@ -19,6 +19,9 @@ class SessionsController < ApplicationController
      # end
    end
 
+   def create_with_google
+   end
+
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
