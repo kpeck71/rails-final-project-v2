@@ -1,12 +1,27 @@
-<div>
-  <% if current_user %>
-  Logged in as <%= link_to current_user.email, user_path(current_user) %>
-  | <%= link_to 'Home', recipes_path %>
-  |  <%= link_to "Log Out", logout_path %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!--<a class="navbar-brand" href="#">Recipe Manager</a>-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <% else %>
-    <%= link_to "Sign Up", signup_path %> or
-    <%= link_to "Log In", login_path %>
-  <% end %>
-</div>
-<br>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li><%= link_to 'Home', recipes_path, class: "nav-link"%></li>
+      <!-- <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li> -->
+      <% if current_user %>
+        <li class="nav-item active"><%= link_to current_user.email, user_path(current_user), class: "nav-link" %></li>
+        <li><%= link_to "Log Out", logout_path, class: "nav-link" %></li>
+
+      <% else %>
+        <li><%= link_to "Sign Up", signup_path, class: "nav-link" %> or</li>
+        <li><%= link_to "Log In", login_path, class: "nav-link" %></li>
+      <% end %>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search by ingredient">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
