@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
    #   if @user
    #     session[:user_id] = @user.id
    #     redirect_to user_path(@user)
-   @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
-    end
+   # @user = User.find_or_create_by(uid: auth['uid']) do |u|
+   #    u.name = auth['info']['name']
+   #    u.email = auth['info']['email']
+  #  end
 
     session[:user_id] = @user.id
      # else
@@ -20,12 +20,17 @@ class SessionsController < ApplicationController
    end
 
    def create_with_google
-     @user = User.find_or_create_by(uid: auth['uid']) do |u|
-        u.name = auth['info']['name']
-        u.email = auth['info']['email']
-      end
+     @user = User.from_omniauth(auth)
+       if @user
+         session[:user_id] = @user.id
+         redirect_to user_path(@user)
+       end
+     # @user = User.find_or_create_by(uid: auth['uid']) do |u|
+     #    u.name = auth['info']['name']
+     #    u.email = auth['info']['email']
+     #  end
 
-      session[:user_id] = @user.id
+      #session[:user_id] = @user.id
    end
 
   def create

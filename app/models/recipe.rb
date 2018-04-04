@@ -30,4 +30,12 @@ class Recipe < ApplicationRecord
 
   end
 
+  def self.search(search)
+    if search
+      self.where('ingredients.name LIKE ?', "%#{search}%")
+    else
+      self.all
+    end
+  end
+
 end

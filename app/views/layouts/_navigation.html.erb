@@ -19,9 +19,11 @@
         <li><%= link_to "Log In", login_path, class: "nav-link" %></li>
       <% end %>
 
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search by ingredient">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+      <%= form_tag(recipes_path, :method => 'get', id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search by ingredient", class: "form-control mr-sm-2" %>
+        <%= submit_tag "Search", :name => nil, class: "btn btn-secondary my-2 my-sm-0" %>
+      <% end %>
+    </div>
   </div>
 </nav>
