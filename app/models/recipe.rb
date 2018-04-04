@@ -31,11 +31,8 @@ class Recipe < ApplicationRecord
   end
 
   def self.search(search)
-    if search
-      self.where('ingredients.name LIKE ?', "%#{search}%")
-    else
-      self.all
-    end
+    where("name LIKE ? OR ingredients LIKE ? OR instructions LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%") 
   end
+  #MySQL uses LIKE ? Heroku or another platform that uses PostgreSQL uses  ILIKE
 
 end
