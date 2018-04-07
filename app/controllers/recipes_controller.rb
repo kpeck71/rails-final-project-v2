@@ -5,10 +5,11 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
     if params[:search]
       #@recipes = Recipe.search(params[:search]).order("created_at DESC")
-      @recipes = Recipe.search(params[:search])
       raise @recipes.inspect
+      @recipes = Recipe.search(params[:search])
+
     else
-      @recipes = Recipe.all.order("created_at DESC")
+      @recipes = Recipe.all
     end
   end
 
