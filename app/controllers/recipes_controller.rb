@@ -2,12 +2,9 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update]
 
   def index
-    @recipes = Recipe.all
     if params[:search]
-      #@recipes = Recipe.search(params[:search]).order("created_at DESC")
-      raise @recipes.inspect
       @recipes = Recipe.search(params[:search])
-
+      raise @recipes.inspect
     else
       @recipes = Recipe.all
     end
