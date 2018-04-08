@@ -1,6 +1,8 @@
 <h1>All Categories</h1>
+<p><%= link_to 'Sort by Most Popular',sort_by_popularity_categories_path %></p>
+<p><%= link_to 'Sort by Name',sort_ABC_categories_path %></p>
 <ul>
-  <% Category.all.each do |category| %>
-  <li><%= link_to category.name, category_path(category) %> </li>
+  <% @categories.each do |category| %>
+  <li><%= link_to category.name, category_path(category) %> | <%= pluralize(category.recipes.count, "recipe") %></li>
   <% end %>
 </ul>

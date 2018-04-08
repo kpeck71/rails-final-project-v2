@@ -4,6 +4,7 @@ class Category < ApplicationRecord
   validates :name, presence: true
 
    scope :sort_by_popularity, -> { order("RECIPE_COUNT ASC")}
+   scope :sort_ABC, -> { order("NAME DESC")}
 
    def recipe_count
      self.recipes.count

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :categories do
     collection do
       get :sort_by_popularity
+      get :sort_ABC
     end
   end
   resources :ingredients
