@@ -3,11 +3,10 @@ class Category < ApplicationRecord
   has_many :recipes, through: :category_recipes
   validates :name, presence: true
 
-  # def most_popular
-  #   scope :most_popular, -> { joins(:category_recipes).where('category_id.count.maximum') }
-  #   # SELECT  "category_id".* FROM "category_recipes" ORDER BY "users"."id" DESC LIMIT ?
-  #   #users.project(users[:age].count)
-  #   # => SELECT COUNT(users.age) FROM users
-  #
-  # end
+   scope :sort_by_popularity, -> { order("RECIPE_COUNT ASC")}
+
+   def recipe_count
+     self.recipes.count
+   end
+
 end

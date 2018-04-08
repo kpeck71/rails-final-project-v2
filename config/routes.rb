@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :recipes #, only: [:new, :create, :update, :destroy]
-  resources :categories
+  resources :categories do
+    collection do
+      get :sort_by_popularity
+    end
+  end
   resources :ingredients
 
   # resources :users do
