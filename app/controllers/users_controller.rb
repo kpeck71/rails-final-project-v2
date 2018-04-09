@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     if @user.save
       #raise @user.inspect
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Thank you for signing up!"
+      redirect_to root_path
+      flash[:notice] =  "Thank you for signing up!"
       #is that where we should send new users? recipe index?
     else
       flash[:notice] = @user.errors.full_messages

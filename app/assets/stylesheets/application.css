@@ -14,10 +14,6 @@
  *= require_self
  */
 
-* {
-  margin: 5px
-};
-
-.nav_footer {
-  margin-top:15px
-}
+ * {
+   margin: 5px
+ };

@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   end
 
   def sort_ABC
-    @categories = Category.order('name DESC')
+    @categories = Category.sort_ABC
     render :index
   end
 end
