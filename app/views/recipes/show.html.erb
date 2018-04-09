@@ -1,21 +1,28 @@
-<h2><%= @recipe.name %></h2>
-<p>Made by: <%= @recipe.user.name %>, <%=link_to @recipe.user.email, user_path(@recipe)%> </p>
-<h3>Categories:</h3>
-<% @recipe.categories.each do |category| %>
-  <%= link_to category.name, category_path(category) %><br>
-<% end %>
+<div class="card mb-3">
+  <h3 class="card-header"><%= @recipe.name %></h3>
 
-<h3>Ingredients:</h3>
-<ul>
-  <% @recipe.ingredients.each do |ingredient| %>
-  <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
-  <br>
-<% end %>
-</ul>
+  <div class="card-body">
 
-<h3>Instructions:</h3>
-<p><%= @recipe.instructions %> </p>
+    <h5 class="card-title">Made by: <%= @recipe.user.name %>, <%=link_to @recipe.user.email, user_path(@recipe)%> </h5>
+    <h5 class="card-title">Categories:</h5>
+    <% @recipe.categories.each do |category| %>
+      <%= link_to category.name, category_path(category) %><br>
+    <% end %>
 
-<% if current_user == @recipe.user %>
-  <%= link_to "Edit Recipe", edit_recipe_path(@recipe) %>
-<% end %>
+    <h5 class="card-title">Ingredients:</h5>
+    <ul class="list-group list-group-flush">
+      <% @recipe.ingredients.each do |ingredient| %>
+      <li class="list-group-item"><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+      <br>
+    <% end %>
+    </ul>
+
+    <h5 class="card-title">Instructions:</h5>
+    <h6 class="card-subtitle text-muted"><%= @recipe.instructions %> </h6>
+
+    <% if current_user == @recipe.user %>
+      <%= link_to "Edit Recipe", edit_recipe_path(@recipe) %>
+    <% end %>
+
+  </div> <!-- div card body-->
+</div>
