@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       flash[:notice] =  "Thank you for signing up!"
       #is that where we should send new users? recipe index?
     else
-      flash[:notice] = @user.errors.full_messages
+      flash[:error] = @user.errors.full_messages
       render 'new'
     end
   end

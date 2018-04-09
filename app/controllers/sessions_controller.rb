@@ -39,14 +39,15 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_url
     else
-      flash[:notice] = "User not correct or not found"
+      flash[:error] = "User not correct or not found"
       render 'new'
     end
   end
 
   def destroy
     reset_session
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_url
+    flash[:alert] = "Logged out!"
   end
 
 private
