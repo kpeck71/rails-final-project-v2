@@ -1,27 +1,36 @@
 <div>
-  <%= form_for @recipe do |f| %>
-  <%= f.label "Recipe Name" %>
-  <%= f.text_field :name %><br></br>
-  Ingredients:
-  <br></br>
-     <%= f.fields_for :ingredients, @recipe.ingredients do |ingredients_form| %>
-         <%= ingredients_form.label :name %>
-         <%= ingredients_form.text_field :name %>
-         <br>
-     <% end %>
-  <br></br>
-  <%= f.label "Instructions" %><br>
-  <%= f.text_area :instructions %><br></br>
+  <div class="form-group">
+    <%= form_for @recipe do |f| %>
+    <%= f.label "Recipe Name", :class => "h4" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <h4>Ingredients:</h4>
 
-  <%= f.label "Categories" %><br>
-  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
-  <%= f.fields_for :categories, @recipe.categories.build do |categories_field| %>
-    <br><%= f.label "And/or Create New Category" %>
-    <%= categories_field.text_field :name %>
-  <% end %>
-<br></br>
-  <%= f.hidden_field :user_id, :value => current_user.id  %>
+       <%= f.fields_for :ingredients, @recipe.ingredients do |ingredients_form| %>
+           <%= ingredients_form.label :name %>
+           <%= ingredients_form.text_field :name %>
+           <br>
+       <% end %>
+  </div>
 
-  <%= f.submit class:"btn btn-primary" %>
+  <div class="form-group">
+    <%= f.label "Instructions", :class => "h4" %>
+    <%= f.text_area :instructions, :class => "exampleTextarea" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Categories", :class => "h4" %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, :class => "form-check-label" %><br>
+    <%= f.fields_for :categories, @recipe.categories.build do |categories_field| %>
+      <br><%= f.label "And/or Create New Category", :class => "h4" %>
+      <%= categories_field.text_field :name %>
+    <% end %>
+  </div>
+
+    <%= f.hidden_field :user_id, :value => current_user.id  %>
+
+    <%= f.submit class:"btn btn-primary" %>
   <% end %>
+  <br>
 </div>
