@@ -21,6 +21,7 @@ http://api.rubyonrails.org/v5.0/classes/ActiveRecord/Scoping/Named/ClassMethods.
 - [ x] Include login (how e.g. Devise)
 - [ x] Include logout (how e.g. Devise)
 -----> [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
+        https://github.com/kelseyhuse30/drinkmaster/blob/master/app/models/user.rb
 
 - [x ] Include nested resource show or index (URL e.g. users/2/recipes)
 -----> [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
@@ -38,3 +39,5 @@ Blog notes:
 New technology, old problem
 Taking a break for weeks and trying to catch up
 Scope method
+Future app updates:
+-use this as a recipe/budget tracker as well. Include estimated cost of the ingredients, compare to your own weekly budget.
