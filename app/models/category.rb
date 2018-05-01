@@ -17,4 +17,7 @@ class Category < ApplicationRecord
      #[1, "Mexican"], [1, "Chinese"], [1, "Russian"], [1, "Greek"], [1, "Cajun"]]
    end
 
+#array.max_by { |i| array.count(i) }
+
+
 end
