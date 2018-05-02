@@ -1,3 +1,9 @@
-<% Ingredient.all.each do |ingredient| %>
-  <%= "#{ingredient.name}" %> | <small><%= link_to "See All #{ingredient.recipes.count} Recipes", ingredient_path(ingredient) %></small><br>
-<% end %>
+<div>
+  <h2>All Ingredients</h2>
+  <div class="list-group">
+    <% Ingredient.all.each do |ingredient| %>
+      <li class="list-group-item list-group-item-action"><%= "#{ingredient.name}" %> <small><%= link_to pluralize(ingredient.recipes.count, "recipe"), ingredient_path(ingredient) %></small></li>
+    <% end %>
+  </ul>
+  </div>
+</div>
