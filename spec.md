@@ -31,6 +31,7 @@ Does adding a new category in a new recipe count for this?
 Confirm:
 - [ ] The application is pretty DRY
 - [ ] Limited logic in controllers
+Is there too much if/else in recipes controller?
 - [ ] Views use helper methods if appropriate
 - [ ] Views use partials if appropriate
 
