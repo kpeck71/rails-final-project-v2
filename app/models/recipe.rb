@@ -4,7 +4,8 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :category_recipes
   has_many :categories, through: :category_recipes
-  validates :name, presence: true
+  validates_presence_of :name, :ingredients, :instructions
+
   # accepts_nested_attributes_for :ingredients,
   #   :allow_destroy => true,
   #   :reject_if => :all_blank
