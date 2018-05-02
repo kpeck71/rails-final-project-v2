@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
       redirect_to @recipe
       #redirect_to recipe_path(@recipe)
     else
-      raise @recipe.errors
+      flash[:notice] = @recipe.errors.full_messages
     end
   end
 
