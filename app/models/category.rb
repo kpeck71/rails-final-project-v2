@@ -11,8 +11,8 @@ class Category < ApplicationRecord
    end
 
    def self.sort_by_popularity
-     @cats = Category.all
-     @cats.map{|category| [category.recipe_count, category.name]}
+     @categories = Category.all
+     @categories.map{|category| [category.recipe_count, category.name]}
      #=> [[0, "Italian"], [0, "Vietnamese"], [2, "American"], [1, "New Category"], [0, ""],
      #[1, "Mexican"], [1, "Chinese"], [1, "Russian"], [1, "Greek"], [1, "Cajun"]]
    end
