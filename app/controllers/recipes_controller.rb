@@ -44,11 +44,11 @@ class RecipesController < ApplicationController
     if @recipe.user == current_user
       5.times{@recipe.ingredients.build}
       render 'edit'
-
     else
       redirect_to root_path
       flash[:notice] = "You are not authorized to edit another user's recipe."
     end
+
   end
 
   def update
