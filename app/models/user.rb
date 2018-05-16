@@ -11,4 +11,16 @@ class User < ApplicationRecord
   def regular_login
     !self.uid
   end
+
+  def self.google_login
+    find_or_create_by(email: auth['info']['email']) do |u|
+       u.name = auth['info']['name']
+       u.email = auth['info']['email']
+       u.password = "Hellothisisatest"
+    end
+  end
+
+  def auth
+    request.env["omniauth.auth"]
+  end
 end
