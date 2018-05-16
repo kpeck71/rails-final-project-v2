@@ -29,7 +29,7 @@
 
     <%= f.hidden_field :user_id, :value => current_user.id  %>
 
-    <%= f.submit :class =>"btn btn-primary" %>
+    <%= f.submit :class =>"btn btn-primary", data: { disable_with: false } %>
   <% end %>
   <br>
 </div>
