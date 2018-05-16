@@ -22,9 +22,7 @@ Rails.application.routes.draw do
 
   get 'users/:user_id/recipes', to: 'users#recipes'
 
-
-  get '/auth/facebook' => 'sessions#create_with_facebook'
-  get '/auth/google_oauth2' => 'sessions#create_with_google'
+  get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
 
 end
 
