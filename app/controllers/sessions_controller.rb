@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
   def login_with_google
 
-
   end
 
   def create
