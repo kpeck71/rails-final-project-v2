@@ -23,4 +23,5 @@ class User < ApplicationRecord
   def auth
     request.env["omniauth.auth"]
   end
+  
 end
