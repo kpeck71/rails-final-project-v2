@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates_presence_of :name, :email, if: :regular_login
   validates_uniqueness_of :email, if: :regular_login
   validates :password, :length => {:within => 6..40}
-  scope :most_recipes, -> { }
+  scope :most_recipes, -> { joins(:recipes).where ('x') }
 
   def regular_login
     !self.uid
@@ -21,6 +21,9 @@ class User < ApplicationRecord
     end
   end
 
+  def most_recipes
+    User.order("users.recipes_count DESC").limit(1)
+  end
 
   def auth
     request.env["omniauth.auth"]
