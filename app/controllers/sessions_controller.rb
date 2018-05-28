@@ -2,8 +2,15 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def login_with_google
-
+  def create_with_google
+    if @user = User.google_login
+       @user.save
+       session[:user_id] = @user.id
+       redirect_to user_path(@user)
+    else
+       flash[:error] = "User not correct or not found GOOGLE"
+       redirect_to root_path
+     end
   end
 
   def create
