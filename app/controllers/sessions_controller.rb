@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to root_url
+      flash[:alert] = "Welcome! You are now logged in!"
     else
       flash[:error] = "User not correct or not found"
       render 'new'

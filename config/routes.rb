@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :users
-  resources :sessions, only: [:create, :destroy]
+  resources :sessions
   resources :recipes #, only: [:new, :create, :update, :destroy]
   resources :categories do
     collection do
