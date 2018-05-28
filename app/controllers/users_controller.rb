@@ -26,6 +26,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def most_recipes
+    @users = User.most_recipes
+    render :index
+  end
+
 
   private
   def user_params

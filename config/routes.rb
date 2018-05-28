@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users
+  resources :users do
+    collection do
+      get :most_recipes
+    end
+  end
   resources :sessions
   resources :recipes #, only: [:new, :create, :update, :destroy]
   resources :categories do
