@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates_presence_of :name, :email, if: :regular_login
   validates_uniqueness_of :email, if: :regular_login
   validates :password, :length => {:within => 6..40}
+  scope :most_recipes, -> { }
 
   def regular_login
     !self.uid
@@ -20,8 +21,9 @@ class User < ApplicationRecord
     end
   end
 
+
   def auth
     request.env["omniauth.auth"]
   end
-  
+
 end
