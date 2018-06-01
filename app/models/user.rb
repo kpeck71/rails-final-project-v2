@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  require 'securerandom'
+
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates_presence_of :name, :email, if: :regular_login
   validates_uniqueness_of :email, if: :regular_login
@@ -17,7 +19,7 @@ class User < ApplicationRecord
     find_or_create_by(email: auth['info']['email']) do |u|
        u.name = auth['info']['name']
        u.email = auth['info']['email']
-       u.password = "Hellothisisatest"
+       u.password = SecureRandom.hex(10)
        # Generate secure random
     end
   end
