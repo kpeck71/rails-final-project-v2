@@ -23,18 +23,14 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      #raise @recipe.inspect
       redirect_to @recipe
-      #redirect_to recipe_path(@recipe)
     else
       flash[:notice] = @recipe.errors.full_messages
     end
   end
 
   def show
-    if current_user
-      render 'show'
-    else
+    if !logged_in?
       redirect_to root_path
       flash[:notice] = "Only logged-in users can see full recipes."
     end
@@ -43,7 +39,6 @@ class RecipesController < ApplicationController
   def edit
     if @recipe.user == current_user
       5.times{@recipe.ingredients.build}
-      render 'edit'
     else
       redirect_to root_path
       flash[:notice] = "You are not authorized to edit another user's recipe."
