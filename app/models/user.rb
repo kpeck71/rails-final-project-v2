@@ -25,7 +25,7 @@ class User < ApplicationRecord
     end
   end
 
-  def most_recipes
+  def self.most_recipes
     User.order("users.recipes_count DESC")
   end
 
