@@ -2,7 +2,7 @@
 <p><%= link_to 'Sort by Most Prolific',most_recipes_users_path %></p>
 
 <div class="list-group">
-  <% User.all.each do |user| %>
+  <% @users.each do |user| %>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <%= link_to user.name, user_path(user) %>
       <span class="badge badge-primary badge-pill"><%= pluralize(user.recipes_count, "recipe") %></span>
