@@ -1,18 +1,20 @@
 class Category < ApplicationRecord
   has_many :category_recipes
-  has_many :recipes, through: :category_recipes
+  #has_many :recipes, through: :category_recipes
+  has_many :recipes, -> {order 'recipes.count'}, through: :category_recipes
   validates :name, presence: true
   validates_uniqueness_of :name
 
-   scope :sort_by_popularity, -> { order("categories.recipes_count DESC") }
+   # scope :sort_by_popularity, -> { order("categories.recipes_count DESC") }
    scope :sort_ABC, -> { order("NAME ASC")}
 
 
-   # def self.sort_by_popularity
-   #   Category.order("categories.recipes_count DESC").limit(1)
-   # end
+  def recipes_count
+    self.recipes.count
+  end
 
-#array.max_by { |i| array.count(i) }
+#   has_many :users, -> { order 'users.last_name, users.first_name' }, :through => :assignments
+#   has_many :recipes, -> { order 'recipes' }, :through => :category_recipes
 
 
 end
