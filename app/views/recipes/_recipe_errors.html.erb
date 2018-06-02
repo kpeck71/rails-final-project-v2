@@ -1,0 +1,11 @@
+<div id="alert alert-dismissible alert-danger">   
+<% if !@recipe.valid? %>
+<%= pluralize(@recipe.errors.count, "error") %> prohibited
+   this recipe from being created:
+ <ul>
+ <% @recipe.errors.full_messages.each do |msg| %>
+   <li><%= msg %></li>
+ <% end %>
+</ul>
+<% end %>
+</div>

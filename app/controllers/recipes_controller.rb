@@ -4,7 +4,6 @@ class RecipesController < ApplicationController
   def index
     if params[:search]
       @recipes = Recipe.search(params[:search])
-      raise @recipes.inspect
     else
       @recipes = Recipe.all
     end
@@ -22,10 +21,9 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    # raise @recipe.inspect
     if @recipe.save
       redirect_to @recipe
-    else
-      flash[:notice] = @recipe.errors.full_messages
     end
   end
 
