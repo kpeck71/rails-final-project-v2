@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates_presence_of :name, :email, if: :regular_login
   validates_uniqueness_of :email, if: :regular_login
   validates :password, :length => {:within => 6..40}
-  scope :most_recipes, -> { joins(:recipes).where ('x') }
 
   def regular_login
     !self.uid
@@ -19,13 +18,15 @@ class User < ApplicationRecord
     find_or_create_by(email: auth['info']['email']) do |u|
        u.name = auth['info']['name']
        u.email = auth['info']['email']
-       u.password = SecureRandom.hex(10)
+       u.uid = auth['uid']
+       u.provider = auth['provider']
+       u.password = SecureRandom.hex(20)
        u.save
     end
   end
 
   def most_recipes
-    User.order("users.recipes_count DESC").limit(1)
+    User.order("users.recipes_count DESC")
   end
 
   def auth
