@@ -6,13 +6,13 @@ class User < ApplicationRecord
   require 'securerandom'
 
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-  validates_presence_of :name, :email, if: :regular_login
-  validates_uniqueness_of :email, if: :regular_login
+  validates_presence_of :name, :email
+  validates_uniqueness_of :email
   validates :password, :length => {:within => 6..40}
 
-  def regular_login
-    !self.uid
-  end
+  # def regular_login
+  #   !self.uid
+  # end
 
   def self.google_login(auth)
     find_or_create_by(email: auth['info']['email']) do |u|
