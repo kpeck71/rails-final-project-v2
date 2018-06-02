@@ -1,5 +1,6 @@
 <% if @recipes.blank? %>
-  <h4>There are no recipes containing the ingredient <%= params[:search] %>.</h4>
+  <!-- <h4>There are no recipes containing the ingredient <%= params[:search] %>.</h4> -->
+  <h4>There are no recipes yet. <%= link_to "Log in", login_path %> and start cooking!</h4>
 <% else %>
   <%= render 'all_recipes' %>
 <% end %>
