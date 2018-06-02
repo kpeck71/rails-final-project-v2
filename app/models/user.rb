@@ -20,7 +20,7 @@ class User < ApplicationRecord
        u.name = auth['info']['name']
        u.email = auth['info']['email']
        u.password = SecureRandom.hex(10)
-       # Generate secure random
+       u.save
     end
   end
 
