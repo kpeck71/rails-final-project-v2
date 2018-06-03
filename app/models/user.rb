@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates_presence_of :name, :email
   validates_uniqueness_of :email
-  validates :password, :length => {:within => 6..40}
+  validates :password, presence: true, :length => {minimum: 6}
 
   # def regular_login
   #   !self.uid
@@ -21,6 +21,7 @@ class User < ApplicationRecord
        u.uid = auth['uid']
        u.provider = auth['provider']
        u.password = SecureRandom.hex(20)
+       u.password_confirmation = u.password
        u.save
     end
   end
