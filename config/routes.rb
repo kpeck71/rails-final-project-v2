@@ -18,7 +18,11 @@ Rails.application.routes.draw do
       get :sort_ABC
     end
   end
-  resources :ingredients
+  resources :ingredients do
+    collection do
+      get :sort_ABC
+    end
+  end
 
   # resources :users do
   #   resources :recipes, only: [:index, :show]
