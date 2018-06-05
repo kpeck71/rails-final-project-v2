@@ -10,7 +10,7 @@ Specs:
 Category has Title
 Recipe has ingredients
 User has unique email; User has a name
------> [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
+[ x ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 /categories/most_recipes
 https://blog.codeship.com/creating-advanced-active-record-db-queries-arel/
 https://github.com/rails/arel
