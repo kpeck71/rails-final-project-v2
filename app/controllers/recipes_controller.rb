@@ -21,6 +21,14 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    if @recipe.save
+      redirect_to @recipe
+      flash[:notice] = "Recipe successfully created!"
+    else
+      redirect_to new_recipe_path
+      flash[:alert] = @recipe.errors.full_messages
+    end
+
   end
 
   def show
