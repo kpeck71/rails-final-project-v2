@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
   end
   resources :sessions
-  resources :recipes #, only: [:new, :create, :update, :destroy]
+  resources :recipes do #, only: [:new, :create, :update, :destroy]
+    resources :ingredients
+  end
   resources :categories do
     collection do
       get :sort_by_popularity
