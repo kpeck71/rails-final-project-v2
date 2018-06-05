@@ -17,11 +17,11 @@ https://github.com/rails/arel
 http://api.rubyonrails.org/v5.0/classes/ActiveRecord/Scoping/Named/ClassMethods.html#method-i-scope
 
 - [x] Include a nested form writing to an associated model using a custom attribute writer (form URL, model name e.g. /recipe/new, Item)
-- [ x] Include signup (how e.g. Devise)
-- [ x] Include login (how e.g. Devise)
-- [ x] Include logout (how e.g. Devise)
------> [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
-        https://github.com/kelseyhuse30/drinkmaster/blob/master/app/models/user.rb
+- [ x ] Include signup (how e.g. Devise)
+- [ x ] Include login (how e.g. Devise)
+- [ x ] Include logout (how e.g. Devise)
+- [ x ] Include third party signup/login (how e.g. Devise/OmniAuth)
+  Omniauth
 
 - [x ] Include nested resource show or index (URL e.g. users/2/recipes)
 -----> [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
