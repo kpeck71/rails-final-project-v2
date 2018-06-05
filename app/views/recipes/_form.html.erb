@@ -1,8 +1,14 @@
 <div>
   <div class="form-group">
     <%= form_for @recipe do |f| %>
-    <%= f.label "Recipe Name", :class => "h4" %>
-    <%= f.text_field :name %>
+    <% if @recipe.errors[:name].empty? %>
+      <%= f.label "Recipe Name", :class => "h4" %>
+      <%= f.text_field :name  %>
+    <% else %>
+      <%= f.label "Recipe Name" %>
+      <%= f.text_field :name, :class => "card border-warning mb-3" %>
+    </div>
+    <% end %>
   </div>
   <div class="form-group">
     <h4>Ingredients:</h4>
