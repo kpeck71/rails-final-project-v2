@@ -1,7 +1,6 @@
 <div>
   <div class="form-group">
     <%= form_for @recipe do |f| %>
-    <%= render partial: 'recipe_errors' %>
     <%= f.label "Recipe Name", :class => "h4" %>
     <%= f.text_field :name %>
   </div>
