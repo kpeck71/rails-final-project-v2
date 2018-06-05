@@ -21,9 +21,6 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    if @recipe.save
-      redirect_to @recipe
-    end
   end
 
   def show
