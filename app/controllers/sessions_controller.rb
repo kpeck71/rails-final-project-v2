@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
     user_info = request.env["omniauth.auth"]
     @user = User.google_login(user_info)
     session[:user_id] = @user.id
-
     redirect_to root_path
+    flash[:alert] = "Welcome! You are now logged in!"
   end
 
   def create
