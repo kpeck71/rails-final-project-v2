@@ -1,7 +1,4 @@
 <h2>Log In </h2>
-<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
 <%= form_tag sessions_path do %>
 <!--no form_for because not working with a model, use sessions_path for sessions#create action-->
     <div class="form-control">
