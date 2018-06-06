@@ -12,7 +12,7 @@ For ingredients, users can see how many recipes use that ingredient from the ind
 
 #Start Here
 
-To run on local system using web browser (localhost:3000), fork and clone the repository, run bundle install –without production, rake db:migrate, rake db:seed
+To run on local system using web browser, fork and clone the repository, run bundle install –without production, rake db:migrate, rake db:seed
 
 
 ## Contributing
