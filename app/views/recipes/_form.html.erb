@@ -15,7 +15,8 @@
        <%= f.fields_for :ingredients, @recipe.ingredients do |ingredients_form| %>
            <%= ingredients_form.label :name %>
            <%= ingredients_form.text_field :name %>
-           <%= link_to "Add Note?", edit_recipe_ingredient_path(@recipe) %>
+           <%= link_to "Add Note?", edit_recipe_ingredient_path(@recipe.id,20) %>
+           <!--  "/recipes/4/ingredients/20/edit" -->
            <br>
        <% end %>
   </div>
