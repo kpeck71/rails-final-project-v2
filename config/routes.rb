@@ -11,17 +11,12 @@ Rails.application.routes.draw do
     end
   end
   resources :sessions
-  resources :recipes do #, only: [:new, :create, :update, :destroy]
-    resources :ingredients
+  resources :recipes do
+    resources :ingredients, only: [:new, :create, :update, :destroy]
   end
   resources :categories do
     collection do
       get :sort_by_popularity
-      get :sort_ABC
-    end
-  end
-  resources :ingredients do
-    collection do
       get :sort_ABC
     end
   end
@@ -31,6 +26,7 @@ Rails.application.routes.draw do
   # end
 
   get 'users/:user_id/recipes', to: 'users#recipes'
+  get 'ingredients/sort_abc', to: 'ingredients#sort_ABC'
 
   get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
 
