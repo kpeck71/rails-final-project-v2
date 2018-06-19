@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :sessions
 
   resources :recipes do
-    resources :ingredients, only: [:new, :show, :create, :update, :destroy]
+    resources :ingredients, only: [:new, :create, :update, :destroy]
   end
   resources :categories do
     collection do
