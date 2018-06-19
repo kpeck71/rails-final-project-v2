@@ -9,6 +9,10 @@ class IngredientsController < ApplicationController
     render :index
   end
 
+  def edit
+    @recipe_ingredient = RecipeIngredient.find_by(params[:id])
+  end
+
   def sort_ABC
     @ingredients = Ingredient.sort_ABC
     render :index
