@@ -1,7 +1,7 @@
 <h2>Add Note for <%= @recipe_ingredient.ingredient.name %> </h2>
 <p>As featured in <%= @recipe_ingredient.recipe.name %></p>
 
-<form>
-  <input field="text"></input>
-  <input type="submit">
-</form>
+<%= form_for @recipe_ingredient, :url => recipe_ingredient_path(@recipe, @ingredient) do |f| %>
+  <%= f.text_area :notes  %><br>
+  <%= f.submit :class =>"btn btn-primary", :value => "Add Note" %>
+<% end %>
