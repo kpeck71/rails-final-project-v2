@@ -10,7 +10,7 @@ class IngredientsController < ApplicationController
   end
 
   def edit
-    @recipe_ingredient = RecipeIngredient.find_by(params[:id])
+    @recipe_ingredient = RecipeIngredient.find_or_create_by(ingredient_id: params[:id], recipe_id: params[:recipe_id])
   end
 
   def sort_ABC
