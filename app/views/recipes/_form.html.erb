@@ -15,8 +15,13 @@
        <%= f.fields_for :ingredients, @recipe.ingredients do |ingredients_form| %>
            <%= ingredients_form.label :name %>
            <%= ingredients_form.text_field :name %>
-           <%= link_to "Add Note?", edit_recipe_ingredient_path(@recipe.id,20) %>
+           <% if ingredients_form.object.id != nil %>
+             <% recipe_ingredient = RecipeIngredient.find_by(recipe_id: @recipe.id, ingredient_id: ingredients_form.object.id)%>
+             <%= recipe_ingredient.notes %>
+             <%= link_to "Add/Edit Note?", edit_recipe_ingredient_path(@recipe.id, ingredients_form.object.id) %>
+           <% end %>
            <!--  "/recipes/4/ingredients/20/edit" -->
+           <!-- ingredients_form.object.id -->
            <br>
        <% end %>
   </div>
