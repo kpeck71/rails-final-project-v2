@@ -12,7 +12,11 @@
     <h5 class="card-title">Ingredients:</h5>
     <ul class="list-group list-group-flush">
       <% @recipe.ingredients.each do |ingredient| %>
-      <li class="list-group-item"><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+      <li class="list-group-item">
+        <%= link_to ingredient.name, ingredient_path(ingredient) %>
+        <% recipe_ingredient = RecipeIngredient.find_by(recipe_id: @recipe.id, ingredient_id: ingredient.id) %>
+        <%= recipe_ingredient.notes %>
+      </li>
       <br>
     <% end %>
     </ul>
