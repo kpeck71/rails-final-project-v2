@@ -12,17 +12,15 @@
   </div>
   <div class="form-group">
     <h4>Ingredients:</h4>
-       <%= f.fields_for :ingredients, @recipe.ingredients do |ingredients_form| %>
-           <%= ingredients_form.label :name %>
-           <%= ingredients_form.text_field :name %>
-           <% if ingredients_form.object.id != nil %>
-             <% recipe_ingredient = RecipeIngredient.find_by(recipe_id: @recipe.id, ingredient_id: ingredients_form.object.id)%>
-             <%= recipe_ingredient.notes %>
-             <%= link_to "Add/Edit Note?", edit_recipe_ingredient_path(@recipe.id, ingredients_form.object.id) %>
-           <% end %>
-           <!--  "/recipes/4/ingredients/20/edit" -->
-           <!-- ingredients_form.object.id -->
-           <br>
+       <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients do |recipe_ingredient| %>
+         <%= recipe_ingredient.fields_for :ingredient, @recipe.ingredients.build do |ingredient| %>
+             <div>
+               <%= ingredient.label :name %>
+               <%= ingredient.text_field :name %>
+               <%= recipe_ingredient.label :notes %>
+               <%= recipe_ingredient.text_area :notes %>
+             </div>
+         <% end %>
        <% end %>
   </div>
 
