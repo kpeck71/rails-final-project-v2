@@ -1,0 +1,36 @@
+<%= form_for @recipe do |f| %>
+Current User: <%= current_user.id %>
+Valid? <%= current_user.valid? %>
+
+<%= render 'recipe_errors', form: @recipe %>
+
+<div class="form-group">
+<%= f.label "Recipe Name", :class => "h4" %><%= f.text_field :name %>
+
+<div class="form-group">
+<%= f.label "Ingredients", :class => "h4" %>
+    <%= f.fields_for :recipe_ingredients do |recipe_ingredient| %>
+    <p><%= recipe_ingredient.fields_for :ingredient, @recipe.ingredients.build do |ingredient| %></p>
+    Name: <%= ingredient.text_field :name %>
+    Note: <%= recipe_ingredient.text_field :notes %>
+    <% end %>
+
+      <% end %>
+</div>
+
+<%= f.label "Instructions", :class => "h4" %><%= f.text_area :instructions %></div>
+
+   <div class="form-group">
+     <%= f.label "Categories", :class => "h4" %>
+     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, :class => "form-check-label" %><br>
+     <%= f.fields_for :categories, @recipe.categories.build do |categories_field| %>
+       <br><%= f.label "And/or Create New Category", :class => "h4" %>
+       <%= categories_field.text_field :name %>
+     <% end %>
+   </div>
+
+  <%= f.hidden_field :user_id, :value => current_user.id  %>
+
+  <%= f.submit "Submit" %>
+
+<% end %>
