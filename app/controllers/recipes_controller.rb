@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
   def new
     if current_user
       @recipe = Recipe.new
-      10.times{@recipe.ingredients.build}
+      10.times{@recipe.recipe_ingredients.build}
     else
       redirect_to root_path
       flash[:notice] = "Only logged-in users can create recipes."
@@ -21,6 +21,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+
     if @recipe.save
       redirect_to @recipe
       flash[:notice] = "Recipe successfully created!"
@@ -40,7 +41,7 @@ class RecipesController < ApplicationController
 
   def edit
     if @recipe.user == current_user
-      5.times{@recipe.ingredients.build}
+      5.times{@recipe.recipe_ingredients.build}
     else
       redirect_to root_path
       flash[:notice] = "You are not authorized to edit another user's recipe."
@@ -58,12 +59,13 @@ class RecipesController < ApplicationController
     end
   end
 
-  def create_category
+  def ingredients
+    @ingredients = @recipe.ingredients
   end
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :user_id, :instructions, categories_attributes: [:name], category_ids: [], ingredients_attributes: [:name])
+    params.require(:recipe).permit(:name, :user_id, :instructions, recipe_ingredients_attributes: [:notes, ingredient: [:name]], categories_attributes: [:name], category_ids: [])
   end
 
   def set_recipe
