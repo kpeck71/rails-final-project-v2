@@ -11,12 +11,15 @@ class Recipe < ApplicationRecord
   #   :reject_if => :all_blank
   # end
 
-  def ingredients_attributes=(ingredients_attributes)
-    self.ingredients.destroy_all
+  def recipe_ingredients_attributes=(recipe_ingredients_attributes)
 
-    ingredients_attributes.values.each do |ingredient_attribute|
-       if !ingredient_attribute[:name].empty? && ingredient = Ingredient.find_or_create_by(ingredient_attribute)
+    recipe_ingredients_attributes.values.each do |ingredient_attribute|
+      name = ingredient_attribute[:ingredient][:name]
+       if !name.empty? && ingredient = Ingredient.find_or_create_by(name: name)
          self.ingredients << ingredient
+         self.save
+         self.recipe_ingredients.find_or_create_by(notes: ingredient_attribute[:notes], recipe_id: self.id, ingredient_id: ingredient.id)
+         self.save
        end
     end
   end
