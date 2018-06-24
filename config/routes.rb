@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+
+  get '/recipes/:id/ingredients', to: 'recipes#ingredients'
+
+  get 'users/:user_id/recipes', to: 'users#recipes'
+  get 'ingredients/sort_abc', to: 'ingredients#sort_ABC'
+  get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
+
   resources :users do
     collection do
       get :most_recipes
@@ -13,7 +20,7 @@ Rails.application.routes.draw do
   resources :sessions
 
   resources :recipes do
-    resources :ingredients, only: [:edit, :update, :destroy]
+    resources :ingredients
   end
   resources :categories do
     collection do
@@ -27,10 +34,6 @@ Rails.application.routes.draw do
   # resources :users do
   #   resources :recipes, only: [:index, :show]
   # end
-
-  get 'users/:user_id/recipes', to: 'users#recipes'
-  get 'ingredients/sort_abc', to: 'ingredients#sort_ABC'
-  get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
 
 end
 
