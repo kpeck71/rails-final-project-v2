@@ -3,7 +3,7 @@
 
   <div class="card-body">
 
-    <h5 class="card-title">Made by: <%= @recipe.user.name %>, <%=link_to @recipe.user.email, user_path(@recipe)%> </h5>
+    <h5 class="card-title">Made by: <%= @recipe.user.name %>, <%=link_to @recipe.user.email, user_path(@recipe.user)%> </h5>
     <h5 class="card-title">Categories:</h3>
     <% @recipe.categories.each do |category| %>
       <%= link_to category.name, category_path(category) %><br>
