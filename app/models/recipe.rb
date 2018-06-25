@@ -16,14 +16,17 @@ class Recipe < ApplicationRecord
     recipe_ingredients_attributes.values.each do |ingredient_attribute|
       name = ingredient_attribute[:ingredient][:name]
        if !name.empty? && ingredient = Ingredient.find_or_create_by(name: name)
-         self.ingredients << ingredient
+         self.ingredients << ingredient # i don't think i want this
+         self.recipe_ingredients.last.update(notes: ingredient_attribute[:notes])
          self.save
-         self.recipe_ingredients.find_or_create_by(notes: ingredient_attribute[:notes], recipe_id: self.id, ingredient_id: ingredient.id)
-         self.save
+         
+
+         # self.recipe_ingredients.find_or_create_by(notes: ingredient_attribute[:notes], recipe_id: self.id, ingredient_id: ingredient.id)
+         # self.save
        end
     end
   end
-#Does not seem DRY
+#Does not seem DRY ?
 
   def categories_attributes=(categories_attributes)
     categories_attributes.values.each do |category_attribute|
