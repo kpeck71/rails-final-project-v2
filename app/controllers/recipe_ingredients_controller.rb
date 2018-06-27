@@ -2,7 +2,7 @@ class RecipeIngredientsController < ApplicationController
   before_action :set_recipe_ingredient, only: [:index, :show, :edit, :update]
 
   def index
-    @recipe = @recipe_ingredient.recipe
+    @recipe = Recipe.find(params[:id])
   end
 
   def show
