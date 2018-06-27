@@ -2,6 +2,8 @@
 <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
 <br><%= recipe_ingredient.ingredient.name %>
 
-<%= link_to "Add a Note?", recipe_ingredient_path(recipe_ingredient) %>
-<!-- I don't want this type of language in my controller -->
+  <% if @recipe.user === current_user %>
+    <%= link_to "Add a Note?", recipe_ingredient_path(recipe_ingredient) %>
+  <% end %>
+
 <% end %>
