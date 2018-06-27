@@ -5,21 +5,21 @@ class Recipe < ApplicationRecord
   has_many :category_recipes
   has_many :categories, through: :category_recipes
   validates_presence_of :name, :ingredients, :instructions
+  validates_uniqueness_of :name
 
   # accepts_nested_attributes_for :ingredients,
   #   :allow_destroy => true,
   #   :reject_if => :all_blank
   # end
 
-  def recipe_ingredients_attributes=(recipe_ingredients_attributes)
+  def ingredients_attributes=(ingredients_attributes)
 
-    recipe_ingredients_attributes.values.each do |ingredient_attribute|
-      name = ingredient_attribute[:ingredient][:name]
-       if !name.empty? && ingredient = Ingredient.find_or_create_by(name: name)
-         self.ingredients << ingredient # i don't think i want this
-         self.recipe_ingredients.last.update(notes: ingredient_attribute[:notes])
+    ingredients_attributes.values.each do |ingredient_attribute|
+      ingredient_name = ingredient_attribute[:name]
+       if !ingredient_name.empty? && ingredient = Ingredient.find_or_create_by(name: ingredient_name)
+         self.ingredients << ingredient
          self.save
-         
+
 
          # self.recipe_ingredients.find_or_create_by(notes: ingredient_attribute[:notes], recipe_id: self.id, ingredient_id: ingredient.id)
          # self.save

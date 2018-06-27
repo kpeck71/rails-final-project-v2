@@ -12,15 +12,11 @@
   </div>
   <div class="form-group">
     <h4>Ingredients:</h4>
-       <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients do |recipe_ingredient| %>
-         <%= recipe_ingredient.fields_for :ingredient, @recipe.ingredients.build do |ingredient| %>
-             <div>
-               <%= ingredient.label :name %>
-               <%= ingredient.text_field :name %>
-               <%= recipe_ingredient.label :notes %>
-               <%= recipe_ingredient.text_area :notes %>
-             </div>
-         <% end %>
+         <%= f.fields_for :ingredients do |ingredient_form| %>
+           <div>
+             <%= ingredient_form.label :name %>
+             <%= ingredient_form.text_field :name %>
+           </div>
        <% end %>
   </div>
 
@@ -33,7 +29,9 @@
     <%= f.label "Categories", :class => "h4" %>
     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, :class => "form-check-label" %><br>
     <%= f.fields_for :categories, @recipe.categories.build do |categories_field| %>
-      <br><%= f.label "And/or Create New Category", :class => "h4" %>
+      <br><%= f.label "And/or Create New Categories", :class => "h4" %>
+      <%= categories_field.text_field :name %>
+      <%= categories_field.text_field :name %>
       <%= categories_field.text_field :name %>
     <% end %>
   </div>
