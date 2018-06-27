@@ -1,0 +1,7 @@
+<h1>Ingredients in this Recipe <%= @recipe.name %></h1>
+<% @recipe.ingredients.each do |ingredient| %>
+<br><%= ingredient.name %>
+
+<%= link_to "Add a Note?", recipe_ingredient_path(ingredient) %>
+<!-- I don't want this type of language in my controller -->
+<% end %>

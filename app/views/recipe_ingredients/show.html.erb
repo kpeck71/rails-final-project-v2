@@ -1,0 +1,6 @@
+<%= @recipe_ingredient.ingredient.name + " in " + @recipe_ingredient.recipe.name %>
+
+<%= form_for @recipe_ingredient do |f| %>
+  <%= f.text_area :notes  %><br>
+  <%= f.submit :class =>"btn btn-primary", :value => "Add/Update Note" %>
+<% end %>
