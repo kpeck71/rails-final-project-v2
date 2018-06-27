@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update]
+  before_action :set_recipe, only: [:show, :edit, :update, :ingredients]
 
   def index
     if params[:search]
@@ -56,6 +56,9 @@ class RecipesController < ApplicationController
       render 'edit'
       # flash[:notice] = "There is an error here."
     end
+  end
+
+  def ingredients
   end
 
   private

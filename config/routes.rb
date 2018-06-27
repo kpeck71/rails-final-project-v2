@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
 
-  get '/recipes/:id/ingredients', to: 'recipes#ingredients'
+  get '/recipes/:id/ingredients', to: 'recipe_ingredients#index'
+  # get '/recipes/:id/ingredients/:id/edit', to: 'recipe_ingredients#edit'
+  #
 
   get 'users/:user_id/recipes', to: 'users#recipes'
   get 'ingredients/sort_abc', to: 'ingredients#sort_ABC'
@@ -19,9 +21,8 @@ Rails.application.routes.draw do
   end
   resources :sessions
 
-  resources :recipes do
-    resources :ingredients
-  end
+  resources :recipes
+
   resources :categories do
     collection do
       get :sort_by_popularity
@@ -30,10 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :ingredients, only: [:index, :show]
-
-  # resources :users do
-  #   resources :recipes, only: [:index, :show]
-  # end
+  resources :recipe_ingredients
 
 end
 
