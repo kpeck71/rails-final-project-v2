@@ -1,4 +1,5 @@
-<h1>Ingredients in this Recipe <%= @recipe.name %></h1>
+<h1>Ingredients in the Recipe <%= @recipe.name %></h1>
+<p>Cook: <%= link_to @recipe.user.name, user_path(@recipe.user) %></p>
 <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
 <br><%= recipe_ingredient.ingredient.name %>
 
