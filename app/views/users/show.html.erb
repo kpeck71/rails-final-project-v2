@@ -1,11 +1,8 @@
-<%= @user.name %>
-<h3>Recipes</h3>
+<h3><%= @user.name %> made <%= pluralize(@user.recipes_count, "recipe") %></h3>
+
 <% @user.recipes.each do |recipe| %>
 <p> - <%= link_to recipe.name, recipe_path(recipe) %>
   <% if current_user == @user %>
    | <%= link_to "Edit", edit_recipe_path(recipe) %></p>
   <% end %>
 <% end %>
-
-<h3>Favorite Categories</h3>
-<!--put user.favorite_category here -->
