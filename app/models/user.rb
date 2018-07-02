@@ -10,10 +10,6 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates :password, presence: true, :length => {minimum: 6}
 
-  # def regular_login
-  #   !self.uid
-  # end
-
   def self.google_login(auth)
     find_or_create_by(email: auth['info']['email']) do |u|
        u.name = auth['info']['name']
