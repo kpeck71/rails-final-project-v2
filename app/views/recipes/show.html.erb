@@ -10,6 +10,7 @@
     <% end %>
 
     <h5 class="card-title">Ingredients:</h5>
+    <p><%= link_to "See the Ingredients", controller: "recipe_ingredients", action: "index", id: @recipe %>
     <ul class="list-group list-group-flush">
       <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
       <li class="list-group-item">
