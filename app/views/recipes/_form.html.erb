@@ -31,8 +31,6 @@
     <%= f.fields_for :categories, @recipe.categories.build do |categories_field| %>
       <br><%= f.label "And/or Create New Categories", :class => "h4" %>
       <%= categories_field.text_field :name %>
-      <%= categories_field.text_field :name %>
-      <%= categories_field.text_field :name %>
     <% end %>
   </div>
 
