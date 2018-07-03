@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   def index
+    @ingredients = Ingredient.all
   end
 
   def show
@@ -8,7 +9,6 @@ class IngredientsController < ApplicationController
 
   def sort_by_popularity
     @ingredients = Ingredient.sort_by_popularity
-    raise @ingredients.inspect
     render :index
   end
 

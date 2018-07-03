@@ -5,13 +5,11 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-
   get '/recipes/:id/ingredients', to: 'recipe_ingredients#index'
-  # get '/recipes/:id/ingredients/:id/edit', to: 'recipe_ingredients#edit'
-  #
 
-  get 'users/:user_id/recipes', to: 'users#recipes'
-  get 'ingredients/sort_abc', to: 'ingredients#sort_ABC'
+  get '/users/:user_id/recipes', to: 'users#recipes'
+  get '/ingredients/sort_abc', to: 'ingredients#sort_ABC'
+  get '/ingredients/sort_by_popularity', to: 'ingredients#sort_by_popularity'
   get '/auth/google_oauth2/callback' => 'sessions#create_with_google'
 
   resources :users do

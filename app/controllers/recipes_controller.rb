@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
       redirect_to @recipe
       flash[:notice] = "Recipe successfully created!"
     else
-      render 'new'
+      redirect_to new_recipe_path
       flash[:notice] = @recipe.errors.full_messages
     end
 
