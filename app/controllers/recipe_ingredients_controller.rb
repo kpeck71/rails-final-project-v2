@@ -1,5 +1,5 @@
 class RecipeIngredientsController < ApplicationController
-  before_action :set_recipe_ingredient, only: [:index, :show, :edit, :update]
+  before_action :set_recipe_ingredient, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @recipe = Recipe.find(params[:id])
@@ -14,6 +14,11 @@ class RecipeIngredientsController < ApplicationController
     if @recipe_ingredient.save
       redirect_to recipe_path(@recipe_ingredient.recipe)
     end
+  end
+
+  def destroy
+    @recipe_ingredient.destroy
+    redirect_to recipe_path(@recipe_ingredient.recipe)
   end
 
   private

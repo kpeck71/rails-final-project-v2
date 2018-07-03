@@ -2,5 +2,6 @@
 
 <%= form_for @recipe_ingredient do |f| %>
   <%= f.text_area :notes  %><br>
+  <%= link_to "Delete", :recipe_ingredient, method: :delete, data: { confirm: "Really?" } %>
   <%= f.submit :class =>"btn btn-primary", :value => "Add/Update Note" %>
 <% end %>
