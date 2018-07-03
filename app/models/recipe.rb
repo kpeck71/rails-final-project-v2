@@ -30,8 +30,7 @@ class Recipe < ApplicationRecord
   end
 
   def self.search(search)
-    joins(:ingredients).where({ingredients: { name: "%#{search}%" }})
-    #where returns an activerecord relation
+    joins(:ingredients).where({ingredients: { name: "#{search}" }})
   end
 
   #MySQL uses LIKE ? Heroku or another platform that uses PostgreSQL uses  ILIKE
