@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+  get '/recipes/most_ingredients', to: 'recipes#most_ingredients', as: "recipes_most_ingredients"
   get '/recipes/:id/ingredients', to: 'recipe_ingredients#index'
+  get '/recipes/:id/ingredients/new', to: 'recipe_ingredients#new', as: "recipe_ingredient_new"
 
   get '/users/:user_id/recipes', to: 'users#recipes'
   get '/ingredients/sort_abc', to: 'ingredients#sort_ABC'

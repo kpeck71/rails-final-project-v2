@@ -1,4 +1,8 @@
 <h1>See All Recipes</h1>
-<% Recipe.all.each do |recipe| %>
-<%= link_to recipe.name, recipe_path(recipe) %><br></br>
-<% end %>
+<h5><%= link_to "Recipe with Most Ingredients", recipes_most_ingredients_path %></h5>
+
+<ul>
+  <% Recipe.all.each do |recipe| %>
+    <li><%= link_to recipe.name, recipe_path(recipe) %><br></br></li>
+  <% end %>
+</ul>

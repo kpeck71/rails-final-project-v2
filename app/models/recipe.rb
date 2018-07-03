@@ -29,9 +29,30 @@ class Recipe < ApplicationRecord
 
   end
 
+  def self.most_ingredients
+    left_joins(:ingredients)
+    .group(:id)
+    .order('COUNT(ingredients.id) DESC')
+    .limit(1)
+    # joins(:recipe_ingredients)
+    # .select("recipe_ingredient.id.*", "COUNT(ingredient.id) AS ingredient_count")
+    # .group(:recipe_ingredient_id)
+    # .order("ingredient_count DESC")
+    # .limit(1)
+  end
+
+
   def self.search(search)
     joins(:ingredients).where({ingredients: { name: "#{search}" }})
   end
+  #
+  # if params[:search]
+  #   @recipes = Recipe.search(params[:search])
+  #   raise @recipes.inspect
+    #<ActiveRecord::Relation [#<Recipe id: 3, name: "Caprese Salad", user_id: 2, instructions: "Combine">,
+    #<Recipe id: 4, name: "Kale Flatbread", user_id: 2, instructions: "Combine">,
+    #<Recipe id: 4, name: "Kale Flatbread", user_id: 2, instructions: "Combine">,
+    #<Recipe id: 4, name: "Kale Flatbread", user_id: 2, instructions: "Combine">]>
 
   #MySQL uses LIKE ? Heroku or another platform that uses PostgreSQL uses  ILIKE
 #where("name LIKE ? OR ingredients LIKE ? OR instructions LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
