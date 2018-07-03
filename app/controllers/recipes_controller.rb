@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :ingredients]
+  before_action :set_recipe, only: [:show, :edit, :update]
 
   def index
     if params[:search]
@@ -60,15 +60,10 @@ class RecipesController < ApplicationController
     end
   end
 
-  def ingredients
-    # WHY IS THIS HERE ?
-  end
-
   def most_ingredients
     recipe = Recipe.most_ingredients
     @recipe = Recipe.find(recipe[0].id)
   end
-
 
   private
   def recipe_params

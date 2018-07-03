@@ -34,11 +34,6 @@ class Recipe < ApplicationRecord
     .group(:id)
     .order('COUNT(ingredients.id) DESC')
     .limit(1)
-    # joins(:recipe_ingredients)
-    # .select("recipe_ingredient.id.*", "COUNT(ingredient.id) AS ingredient_count")
-    # .group(:recipe_ingredient_id)
-    # .order("ingredient_count DESC")
-    # .limit(1)
   end
 
 

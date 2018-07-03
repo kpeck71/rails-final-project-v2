@@ -5,6 +5,10 @@ class RecipeIngredientsController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
+  def new
+    @recipe = Recipe.find_by(params[:id])
+  end
+
   def show
     @recipe_ingredient = RecipeIngredient.find(params[:id])
   end
