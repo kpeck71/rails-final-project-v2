@@ -8,14 +8,15 @@ class Recipe < ApplicationRecord
   validates_uniqueness_of :name
 
   def ingredients_attributes=(ingredients_attributes)
-    self.ingredients.delete_all
+    # self.ingredients.delete_all
 
     ingredients_attributes.values.each do |ingredient_attribute|
       ingredient_name = ingredient_attribute[:name]
-       if !ingredient_name.empty? && ingredient = Ingredient.find_or_create_by(name: ingredient_name)
-         self.ingredients << ingredient
-         self.save
-       end
+      ingredient = Ingredient.find_or_create_by(name: ingredient_name)
+      if !ingredient_name.empty? && ingredient
+         self.ingredients << ingredient unless self.ingredients.include?(ingredient)
+      end
+      self.save
     end
   end
 
