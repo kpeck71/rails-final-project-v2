@@ -41,6 +41,7 @@ class RecipesController < ApplicationController
   def edit
     if @recipe.user == current_user
       5.times{@recipe.ingredients.build}
+      # raise @recipe.recipe_ingredients.inspect
     else
       redirect_to root_path
       flash[:notice] = "You are not authorized to edit another user's recipe."
@@ -49,6 +50,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+
     @recipe.update(recipe_params)
     if @recipe.save
       redirect_to @recipe
@@ -63,7 +65,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :user_id, :instructions, ingredients_attributes: [:name], categories_attributes: [:name], category_ids: [])
+    params.require(:recipe).permit(:name, :user_id, :instructions, ingredients_attributes: [:name, :id], categories_attributes: [:name], category_ids: [])
   end
 
   def set_recipe
