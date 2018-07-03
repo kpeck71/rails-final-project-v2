@@ -1,4 +1,4 @@
-<h3><%= @user.name %> made <%= pluralize(@user.recipes_count, "recipe") %></h3>
+<h3>User: <%= @user.name %>, <%= @user.email %> </h3>
 
 <% @user.recipes.each do |recipe| %>
 <p> - <%= link_to recipe.name, recipe_path(recipe) %>
