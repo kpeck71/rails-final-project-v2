@@ -42,3 +42,10 @@ Taking a break for weeks and trying to catch up
 Scope method
 Future app updates:
 -use this as a recipe/budget tracker as well. Include estimated cost of the ingredients, compare to your own weekly budget.
+
+Wish list
+-Fix form reload!!
+
+-Search
+-Add EatStreet food delivery API on Recipe page to search for the recipe at a restaurant and get it delivered instead
+https://developers.eatstreet.com/endpoint/search
