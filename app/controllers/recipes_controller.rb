@@ -4,6 +4,11 @@ class RecipesController < ApplicationController
   def index
     if params[:search]
       @recipes = Recipe.search(params[:search])
+      raise @recipes.inspect
+      #<ActiveRecord::Relation [#<Recipe id: 3, name: "Caprese Salad", user_id: 2, instructions: "Combine">,
+      #<Recipe id: 4, name: "Kale Flatbread", user_id: 2, instructions: "Combine">,
+      #<Recipe id: 4, name: "Kale Flatbread", user_id: 2, instructions: "Combine">,
+      #<Recipe id: 4, name: "Kale Flatbread", user_id: 2, instructions: "Combine">]>
     else
       @recipes = Recipe.all
     end
@@ -62,6 +67,7 @@ class RecipesController < ApplicationController
 
   def ingredients
   end
+
 
   private
   def recipe_params
