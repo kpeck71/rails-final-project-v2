@@ -1,12 +1,13 @@
 class RecipeIngredientsController < ApplicationController
-  before_action :set_recipe_ingredient, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_recipe_ingredient, only: [:show, :edit, :update, :destroy]
 
   def index
     @recipe = Recipe.find(params[:id])
   end
 
   def new
-    @recipe = Recipe.find_by(params[:id])
+    @recipe = Recipe.find(params[:id])
+    render :new
   end
 
   def show

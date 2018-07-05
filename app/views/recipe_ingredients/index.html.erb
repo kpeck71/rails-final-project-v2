@@ -1,14 +1,23 @@
-<h1>Ingredients in the Recipe <%= @recipe.name %></h1>
-<p>Cook: <%= link_to @recipe.user.name, user_path(@recipe.user) %></p>
-<% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-<h3><%= recipe_ingredient.ingredient.name %></h3>
-<em>Recipe Note:</em> <%= recipe_ingredient.notes %>
-<br>
-  <% if @recipe.user === current_user %>
-    <%= link_to "Add/Edit Note?", recipe_ingredient_path(recipe_ingredient) %>
-  <% end %>
-  <p></p>
-<% end %>
-<h4><%= link_to "+ Add New Ingredient to Recipe", recipe_ingredient_new_path %></h4>
+<h3 class="card-header" style="max-width: 100%">Ingredients in the Recipe <%= @recipe.name %></h3>
 
-<p><%= link_to "Back to Recipe", recipe_path(@recipe) %></p>
+<div class="card" style="max-width: 40em">
+  <div class="card-body">
+    <h4 class="card-title"> <%= @recipe.name %></h4>
+    <h6 class="card-subtitle mb-2 text-muted">Cook: <%= link_to @recipe.user.name, user_path(@recipe.user) %></h6>
+    <p class="card-text">
+      <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+      <h4 class="card-title"><%= recipe_ingredient.ingredient.name %></h4>
+      <p><em>Recipe Note:</em> <%= recipe_ingredient.notes %></p>
+          <% if @recipe.user === current_user %>
+            <p><%= link_to "Add/Edit Note?", recipe_ingredient_path(recipe_ingredient), class: "card-link" %></p>
+          <% end %>
+        <% end %>
+    </p>
+  </div>
+</div>
+
+
+<div>
+  <%= link_to "Add New Ingredient",recipe_ingredient_new_path, class: "btn btn-primary" %></br>
+  <%= link_to "Back to Recipe", recipe_path(@recipe), class: "btn btn-primary btn-sm" %>
+</div>
