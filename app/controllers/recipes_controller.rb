@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
       @recipes = Recipe.search(params[:search])
     else
       @recipes = Recipe.all
+      render json: @recipes, status: 200
     end
   end
 

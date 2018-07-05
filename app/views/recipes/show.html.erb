@@ -1,6 +1,29 @@
-<div class="card mb-3">
-  <h3 class="card-header"><%= @recipe.name %></h3>
+<div class="card-header"><%= @recipe.name %></div>
+<h1 class="recipeIngredients"><%= @recipe.ingredients %></h1>
+<p class="recipeInstructions"><%= @recipe.instructions %></p>
 
+<a href="#" class="js-next" data-id="<%=@recipe.id%>">Next Recipe...</a>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/recipes/" + nextId + ".json", function(data) {
+      $(".card-header").text(data["recipe"]["name"]);
+      $(".recipeIngredients").text(data["ingredients"]);
+      debugger
+      $(".recipeInstructions").text(data["description"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", data["id"]);
+    });
+  });
+});
+</script>
+
+
+<!-- <div class="card mb-3">
+  <h3 class="card-header"><%= @recipe.name %></h3> -->
+<!--
   <div class="card-body">
 
     <h5 class="card-title">Made by: <%= @recipe.user.name %>, <%=link_to @recipe.user.email, user_path(@recipe.user)%> </h5>
@@ -28,5 +51,5 @@
       <%= link_to "Edit Recipe", edit_recipe_path(@recipe) %>
     <% end %>
 
-  </div> <!-- div card body-->
-</div>
+  </div>
+</div> -->
