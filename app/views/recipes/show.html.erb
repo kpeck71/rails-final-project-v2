@@ -1,4 +1,8 @@
-<div class="card-header"><%= @recipe.name %></div>
+<div class="card-header">
+  <%= @recipe.name %>
+</div>
+<a href="#" class="js-prev" data-id="<%=@recipe.id%>">...Previous Recipe</a>
+<a href="#" class="js-next" data-id="<%=@recipe.id%>">Next Recipe...</a>
 <div class="recipeIngredients"><h3>Ingredients</h3>
   <ul class="ingredientsList"><% @recipe.ingredients.each do |recipe| %>
   <li><%= recipe.name %></li>
@@ -6,62 +10,42 @@
 </div>
 </ul>
 
+<div><h3>Instructions:</h3>
 <p class="recipeInstructions"><%= @recipe.instructions %></p>
+</div>
 
-<a href="#" class="js-next" data-id="<%=@recipe.id%>">Next Recipe...</a>
 
 
 
 <script type="text/javascript">
+function loadRecipes(data) {
+  $(".card-header").text(data["name"]);
+  $(".ingredientsList").text("");
+  data["ingredients"].forEach(function(ingredient) {
+    name = ingredient.name
+    $(".ingredientsList").append(`<li>${name}</li>`);
+  })
+  $(".recipeInstructions").text(data["instructions"]);
+  // re-set the id to current on the link
+  $(".js-next").attr("data-id", data["id"]);
+  $(".js-prev").attr("data-id", data["id"]);
+}
+
 $(function () {
   $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/recipes/" + nextId + ".json", function(data) {
-
-      $(".card-header").text(data["name"]);
-      $(".ingredientsList").text("");
-      data["ingredients"].forEach(function(ingredient) {
-        name = ingredient.name
-        $(".ingredientsList").append(`<li>${name}</li>`);
-      })
-      $(".recipeInstructions").text(data["instructions"]);
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", data["id"]);
+      loadRecipes(data);
     });
+    event.preventDefault();
+  });
+
+  $(".js-prev").on("click", function() {
+    var prevId = parseInt($(".js-prev").attr("data-id")) - 1;
+    $.get("/recipes/" + prevId + ".json", function(data) {
+      loadRecipes(data);
+    });
+    event.preventDefault();
   });
 });
 </script>
-
-
-<!-- <div class="card mb-3">
-  <h3 class="card-header"><%= @recipe.name %></h3> -->
-<!--
-  <div class="card-body">
-
-    <h5 class="card-title">Made by: <%= @recipe.user.name %>, <%=link_to @recipe.user.email, user_path(@recipe.user)%> </h5>
-    <h5 class="card-title">Categories:</h3>
-    <% @recipe.categories.each do |category| %>
-      <%= link_to category.name, category_path(category) %><br>
-    <% end %>
-
-    <h5 class="card-title">Ingredients:</h5>
-    <p><%= link_to "See the Ingredients", controller: "recipe_ingredients", action: "index", id: @recipe %>
-    <ul class="list-group list-group-flush">
-      <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-      <li class="list-group-item">
-        <%= link_to recipe_ingredient.ingredient.name, ingredient_path(recipe_ingredient.ingredient) %>
-        <%= recipe_ingredient.notes %>
-      </li>
-      <br>
-    <% end %>
-    </ul>
-
-    <h5 class="card-title">Instructions:</h5>
-    <h6 class="card-subtitle text-muted"><%= @recipe.instructions %> </h6>
-
-    <% if current_user == @recipe.user %>
-      <%= link_to "Edit Recipe", edit_recipe_path(@recipe) %>
-    <% end %>
-
-  </div>
-</div> -->
