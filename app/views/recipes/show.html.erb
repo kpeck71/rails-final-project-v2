@@ -1,6 +1,6 @@
 <div class="card-header"><%= @recipe.name %></div>
 <div class="recipeIngredients"><h3>Ingredients</h3>
-  <ul><% @recipe.ingredients.each do |recipe| %>
+  <ul class="ingredientsList"><% @recipe.ingredients.each do |recipe| %>
   <li><%= recipe.name %></li>
   <% end %>
 </div>
@@ -19,7 +19,11 @@ $(function () {
     $.get("/recipes/" + nextId + ".json", function(data) {
 
       $(".card-header").text(data["name"]);
-      // $(".recipeIngredients").text(data["ingredients"]);
+      $(".ingredientsList").text("");
+      data["ingredients"].forEach(function(ingredient) {
+        name = ingredient.name
+        $(".ingredientsList").append(`<li>${name}</li>`);
+      })
       $(".recipeInstructions").text(data["instructions"]);
       // re-set the id to current on the link
       $(".js-next").attr("data-id", data["id"]);
