@@ -6,7 +6,11 @@ class RecipesController < ApplicationController
       @recipes = Recipe.search(params[:search])
     else
       @recipes = Recipe.all
-      render json: @recipes, status: 200
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @recipes, status: 200 }
+      end
+      # render json: @recipes, status: 200
     end
   end
 
@@ -37,6 +41,7 @@ class RecipesController < ApplicationController
       redirect_to root_path
       flash[:notice] = "Only logged-in users can see full recipes."
     end
+    render json: @recipe, status: 200
   end
 
   def edit
