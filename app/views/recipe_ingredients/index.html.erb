@@ -9,6 +9,17 @@
   <% end %>
   <p></p>
 <% end %>
-<h4><%= link_to "+ Add New Ingredient to Recipe", recipe_ingredient_new_path %></h4>
+<h4><a href="#" class="new-ingredient">+ Add New Ingredient to Recipe</a></h4>
+<div class="new-ingredient-form"></div>
 
 <p><%= link_to "Back to Recipe", recipe_path(@recipe) %></p>
+
+<script type="text/javascript">
+
+  $(".new-ingredient").on("click", function(e) {
+    $('.new-ingredient-form').html("<%= render :partial => 'new_ingredient' %>");
+  });
+  e.preventDefault();
+});
+
+</script>
