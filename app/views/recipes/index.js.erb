@@ -1,0 +1,19 @@
+function Recipe(name, instructions, ingredients) {
+  this.name = name
+  this.instructions = instructions
+  this.ingredients = ingredients
+}
+
+$"(a.load_recipes").on("click",function(e)) {
+  $.get(this.href).success(function(recipes) {
+    var $ul = $("div.recipes")
+    $ul.html("")
+
+    recipes.forEach(function(recipe) {
+      const oneRecipe = new Recipe(recipe)
+      const recipeHTML = oneRecipe.formatComment()
+      $ul.append(recipeHTML)
+    })
+  });
+  e.preventDefault();
+}

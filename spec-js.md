@@ -17,7 +17,8 @@ Next goes to the next recipe within that category / user  - HOW to limit to the 
 /recipes/:id/ingredients
 
 - [ ] Use your Rails API and a form to create a resource and render the response without a page refresh.
-/user/:id/recipes index with new form
+/recipes/:id/ingredients/:id with new notes form (for an ingredient) and an Add New Ingredient to recipe 
+https://learn.co/tracks/full-stack-web-development-v5/rails-and-javascript/building-apis/receiving-api-posts
 
 - [ ] Translate JSON responses into js model objects.
 - [ ] At least one of the js model objects must have at least one method added by your code to the prototype.
