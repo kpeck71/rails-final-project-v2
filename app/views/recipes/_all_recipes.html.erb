@@ -1,8 +1,63 @@
-<h1>See All Recipes</h1>
-<h5><%= link_to "Recipe with Most Ingredients", recipes_most_ingredients_path %></h5>
+<!-- <h3><%= link_to "See All Recipes", recipes_path, :class => 'load_recipes' %></h3> -->
+<!-- <h5><%= link_to "Recipe with Most Ingredients", recipes_most_ingredients_path %></h5> -->
+<!--will load this automatically on page later instead of redirecting to new page-->
 
-<ul>
-  <% Recipe.all.each do |recipe| %>
-    <li><%= link_to recipe.name, recipe_path(recipe) %><br></br></li>
-  <% end %>
-</ul>
+<div class="card-header">
+  <div class="recipe-title"></div>
+  <a href="#" class="most-ingred-link">Recipe with Most Ingredients</a>
+  <a href="#" class="all-recipes-link"></a>
+</div>
+
+<div class="all-recipes-container">
+  <ul>
+    <% Recipe.all.each do |recipe| %>
+      <li><%= link_to recipe.name, recipe_path(recipe) %><br></br></li>
+    <% end %>
+  </ul>
+</div>
+<ul class="ulItems"></ul>
+<div class="recipeInstructions"></div>
+
+
+<script type="text/javascript">
+
+function loadRecipe(data) {
+
+  $(".most-ingred-link").text("")
+  $(".all-recipes-link").append(`<a href="#" onclick="loadAllRecipes()">See All Recipes</a>`)
+  $(".recipe-title").text(data["name"]);
+  $(".all-recipes-container").text("");
+  data["ingredients"].forEach(function(ingredient) {
+    name = ingredient.name
+    $(".ulItems").append(`<li>${name}</li>`);
+  })
+  $(".recipeInstructions").text(data["instructions"]);
+  event.preventDefault();
+};
+
+function loadAllRecipes() {
+  $.get("/recipes.json", function(recipes) {
+    console.log("inside all recipes")
+    // $(".header-link").innerHTML = "See Recipe with Most Ingredients"
+    $(".recipe-title").text("")
+    $(".ulItems").text("")
+    $(".all-recipes-link").text("")
+    $(".most-ingred-link").append(`<a href="#" onclick="loadRecipe()">Recipe Most Ingredients</a>`)
+    recipes.forEach(function(recipe) {
+      name = recipe.name
+      $(".ulItems").append(`<li>${name}</li>`);
+    })
+    event.preventDefault();
+  });
+}
+$(function () {
+  $(".most-ingred-link").on("click", function() {
+    $.get("/recipes/most_ingredients", function(recipe) {
+      loadRecipe(recipe);
+
+    });
+    event.preventDefault();
+  });
+
+});
+</script>

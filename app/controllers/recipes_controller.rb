@@ -41,7 +41,11 @@ class RecipesController < ApplicationController
       redirect_to root_path
       flash[:notice] = "Only logged-in users can see full recipes."
     end
-    render json: @recipe, status: 200
+    # render json: @recipe, status: 200
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @recipe, status: 200 }
+    end
   end
 
   def edit
@@ -69,6 +73,7 @@ class RecipesController < ApplicationController
   def most_ingredients
     recipe = Recipe.most_ingredients
     @recipe = Recipe.find(recipe[0].id)
+    render json: @recipe, status: 200
   end
 
   private
