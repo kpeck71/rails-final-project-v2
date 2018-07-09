@@ -60,12 +60,11 @@ class RecipesController < ApplicationController
   end
 
   def update
-
     @recipe.update(recipe_params)
     if @recipe.save
-      redirect_to @recipe
+      render :show
     else
-      render 'edit'
+      render :edit
       # flash[:notice] = "There is an error here."
     end
   end

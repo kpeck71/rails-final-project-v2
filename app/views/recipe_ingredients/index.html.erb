@@ -1,25 +1,25 @@
 <h1>Ingredients in the Recipe <%= @recipe.name %></h1>
 <p>Cook: <%= link_to @recipe.user.name, user_path(@recipe.user) %></p>
 <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-<h3><%= recipe_ingredient.ingredient.name %></h3>
-<em>Recipe Note:</em> <%= recipe_ingredient.notes %>
-<br>
-  <% if @recipe.user === current_user %>
-    <%= link_to "Add/Edit Note?", recipe_ingredient_path(recipe_ingredient) %>
-  <% end %>
-  <p></p>
+  <h3><%= recipe_ingredient.ingredient.name %></h3>
+  <em>Recipe Note:</em> <%= recipe_ingredient.notes %>
+  <br>
+    <% if @recipe.user === current_user %>
+      <%= link_to "Add/Edit Note", recipe_ingredient_path(recipe_ingredient) %>
+    <% end %>
+    <p></p>
 <% end %>
+
 <h4><a href="#" class="new-ingredient">+ Add New Ingredient to Recipe</a></h4>
 <div class="new-ingredient-form"></div>
 
 <p><%= link_to "Back to Recipe", recipe_path(@recipe) %></p>
 
 <script type="text/javascript">
-
-  $(".new-ingredient").on("click", function(e) {
-    $('.new-ingredient-form').html("<%= render :partial => 'new_ingredient' %>");
+$(function () {
+  $(".new-ingredient").on("click", function() {
+    $('.new-ingredient-form').html(` <%= render partial: 'new_ingredient' %> `)
+    event.preventDefault();
   });
-  e.preventDefault();
 });
-
 </script>

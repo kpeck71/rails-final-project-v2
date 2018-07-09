@@ -15,9 +15,7 @@ class RecipeIngredientsController < ApplicationController
 
   def update
     @recipe_ingredient.update(recipe_ingredient_params)
-    if @recipe_ingredient.save
-      redirect_to recipe_path(@recipe_ingredient.recipe)
-    end
+    redirect_to recipe_ingredient_index_path(@recipe_ingredient.recipe)
   end
 
   def destroy

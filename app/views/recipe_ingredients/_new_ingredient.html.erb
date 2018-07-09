@@ -1,9 +1,11 @@
-<%= form_for @recipe do |f| %>
+<div style="border-style: 1px solid">
+  <%= form_for @recipe do |f| %>
 
-<%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_field| %>
-    <br><%= f.label "And Ingredient", :class => "h4" %>
-     <%= ingredients_field.text_field :name %>
- <% end %>
-   <br>
-   <%= f.submit :class =>"btn btn-primary", :value => "Add Ingredient to Recipe" %>
-<% end %>
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_field| %>
+      <br><%= f.label "Ingredient Name", :class => "h4" %>
+       <%= ingredients_field.text_field :name %>
+   <% end %>
+
+     <%= f.submit :class =>"btn btn-primary", :value => "Add" %>
+  <% end %>
+</div>
