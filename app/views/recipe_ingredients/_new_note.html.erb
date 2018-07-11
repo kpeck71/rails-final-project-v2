@@ -1,7 +1,8 @@
-<%= @recipe_ingredient.ingredient.name + " in " + @recipe_ingredient.recipe.name %>
-
 <%= form_for @recipe_ingredient do |f| %>
   <%= f.text_area :notes  %><br>
+
+  <%= @recipe_ingredient.id %>
+  <!-- it's always grabbing the last recipe_ingredient on the page and passing it to the note form" -->
   <%= link_to "Delete", :recipe_ingredient, method: :delete, data: { confirm: "Really?" } %>
 
   <%= f.submit :class =>"btn btn-primary", :value => "Add/Update Note" %>

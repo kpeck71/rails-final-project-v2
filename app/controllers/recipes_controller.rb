@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
 
   def new
     if current_user
-      @recipe = Recipe.new
+      @recipe = current_user.recipes.build
       10.times{@recipe.ingredients.build}
     else
       redirect_to root_path

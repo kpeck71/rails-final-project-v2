@@ -8,11 +8,10 @@
       <%= recipe_ingredient.notes %>
     </div>
       <% if @recipe.user === current_user %>
-      <div class="new-note-form-<%=recipe_ingredient.id %>">
         <%= link_to "Add/Edit Note", recipe_ingredient_path(recipe_ingredient) %>
-        <a href="#" class="new-note" recipe-ing-id="<%=recipe_ingredient.id %>">Add/Edit Note</a>
+        <!-- <a href="#" class="new-note" recipe-ing-id="<%=recipe_ingredient.id %>">Add/Edit Note</a>
         <% @recipe_ingredient = recipe_ingredient %>
-
+        <div class="new-note-form-<%=recipe_ingredient.id %>" > -->
         </div>
       <% end %>
       <p></p>
@@ -40,27 +39,25 @@ Ingredient.prototype.formatIngredient = function() {
 
   $(".new-ingredient").on("click", function() {
     $('.new-ingredient-form').html(` <%= render partial: 'new_ingredient' %> `)
+    $('.edit_recipe').on("submit", function(ingredient) {
+      debugger
+      $('.ingredients-list').append(ingredientHTML);
+      event.preventDefault();
+    });
+    event.preventDefault();
+  });
+
+
+
+});
+
+$(function () {
+  $(".new-note").on("click", function() {
+    var recipeIng = $(".new-note").attr("recipe-ing-id");
+    var newNoteForm = ".new-note-form-" + recipeIng
+    var recipeIngredient = `#{@recipe_ingredient}`
+    $(newNoteForm).html(` <%= render partial: 'new_note', :recipe_ingredient => `#{@recipe_ingredient}` %>`)
     event.preventDefault();
   });
 });
-
-
-$(function () {
-
-  $("a.new-note").on("click", function(e) {
-
-    // $.get(this).success(function(note) {
-      var id = $(this).attr('recipe-ing-id')
-      var $container = $(this).parent('div');
-      $container.append(` <%= render partial: 'new_note' %> `)
-
-      // recipes.forEach(function(recipe) {
-      //   const oneRecipe = new Recipe(recipe)
-      //   const recipeHTML = oneRecipe.formatRecipe()
-      //   $ul.append(recipeHTML)
-      // })
-    });
-    event.preventDefault();
-  })
-// });
 </script>
