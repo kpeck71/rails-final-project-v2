@@ -6,6 +6,7 @@
     <em>Recipe Note:</em>
     <div>
       <%= recipe_ingredient.notes %>
+      <div class="generatedNotes"></div>
     </div>
       <% if @recipe.user === current_user %>
       <div class="new-note-form-<%=recipe_ingredient.id %>">
@@ -47,20 +48,21 @@ Ingredient.prototype.formatIngredient = function() {
 
 $(function () {
 
-  $("a.new-note").on("click", function(e) {
-
-    // $.get(this).success(function(note) {
-      var id = $(this).attr('recipe-ing-id')
+  $("a.new-note").on("click", function() {
+      var idFoo = $(this).attr('recipe-ing-id')
       var $container = $(this).parent('div');
       $container.append(` <%= render partial: 'new_note' %> `)
+      $('.edit_recipe_ingredient').on("submit", function() {
+        event.preventDefault();
+      //
+      $.get("/recipe_ingredients/" + idFoo + ".json", function(data) {
+        //why is my data only the recipe and the ingredient and not the recipe_ingredient
+        debugger
+       $(".generatedNotes").text(data["recipe"]["name"]);
+     });
 
-      // recipes.forEach(function(recipe) {
-      //   const oneRecipe = new Recipe(recipe)
-      //   const recipeHTML = oneRecipe.formatRecipe()
-      //   $ul.append(recipeHTML)
-      // })
     });
     event.preventDefault();
-  })
-// });
+  });
+});
 </script>

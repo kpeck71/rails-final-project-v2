@@ -16,13 +16,19 @@ class RecipeIngredientsController < ApplicationController
   end
 
   def show
-    @recipe_ingredient = RecipeIngredient.find(params[:id])
+    render json: @recipe_ingredient, status: 200
   end
 
   def update
     @recipe_ingredient = RecipeIngredient.find(params[:id])
-    @recipe_ingredient.update(recipe_ingredient_params)
-    render "update"
+    @recipe = @recipe_ingredient.recipe
+    if @recipe_ingredient.update(recipe_ingredient_params)
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: @recipe_ingredient, status: 200 }
+      end
+    end
+
   end
 
   def destroy
