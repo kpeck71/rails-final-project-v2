@@ -9,53 +9,46 @@
       <div class="generatedNotes"></div>
     </div>
       <% if @recipe.user === current_user %>
-      <div class="new-note-form-<%=recipe_ingredient.id %>">
-        <%= link_to "Add/Edit Note", recipe_ingredient_path(recipe_ingredient) %>
-        <a href="#" class="new-note" recipe-ing-id="<%=recipe_ingredient.id %>">Add/Edit Note</a>
-        <% @recipe_ingredient = recipe_ingredient %>
-
+      <%= link_to "Add/Edit Note", recipe_ingredient_path(recipe_ingredient) %>
+      <a href="#" class="new-note" recipe-ing-id="<%=recipe_ingredient.id %>">Add/Edit Note</a>
+      <div id="note-container" style="display:none">
+        https://api.jquery.com/category/traversing/
+        <div class="new-note-form-<%=recipe_ingredient.id %>">
+          <% @recipe_ingredient = recipe_ingredient %>
+          <form id="new-note">
+            <p>HI</p>
+            <button value="submit">Submit</button>
+          </form>
         </div>
+      </div>
       <% end %>
       <p></p>
   <% end %>
 </div>
 
 <h4><a href="#" class="new-ingredient">+ Add New Ingredient to Recipe</a></h4>
-<div class="new-ingredient-form"></div>
+<div class="new-ingredient-form">
+</div>
 
 <p><%= link_to "Back to Recipe", recipe_path(@recipe) %></p>
 
 <script type="text/javascript">
 $(function () {
-
-function Ingredient(name, notes, recipe_id) {
-  this.name = name
-  this.notes = notes
-  this.recipe_id = recipe_id
-}
-
-Ingredient.prototype.formatIngredient = function() {
-  ingredientHTML = `<li>${this.name}</li><p>New format</p>`
-  return ingredientHTML
-}
-
   $(".new-ingredient").on("click", function() {
     $('.new-ingredient-form').html(` <%= render partial: 'new_ingredient' %> `)
     event.preventDefault();
   });
-});
 
-
-$(function () {
 
   $("a.new-note").on("click", function() {
       var idFoo = $(this).attr('recipe-ing-id')
-      var $container = $(this).parent('div');
-      $container.append(` <%= render partial: 'new_note' %> `)
+      var $note-container = $(this).parent('div');
+      debugger
+      // nextElementSibling or childNodes or lastElementChild
+      $('#note-container').toggle();
       $('.edit_recipe_ingredient').on("submit", function() {
-        event.preventDefault();
-      //
       $.get("/recipe_ingredients/" + idFoo + ".json", function(data) {
+
         //why is my data only the recipe and the ingredient and not the recipe_ingredient
         debugger
        $(".generatedNotes").text(data["recipe"]["name"]);
