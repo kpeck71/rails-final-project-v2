@@ -12,6 +12,7 @@ Next goes to the next recipe within that category / user  - HOW to limit to the 
 
 - [ ] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
 /users/:id/recipes/
+/categories
 
 - [ ] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
 /recipes/:id/ingredients
