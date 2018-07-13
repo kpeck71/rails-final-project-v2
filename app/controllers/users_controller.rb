@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def most_recipes
     @users = User.most_recipes
-    render :index
+    render json: @users, status: 200
   end
 
 
