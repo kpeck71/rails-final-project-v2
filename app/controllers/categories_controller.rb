@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    @category = Category.new
   end
 
   def show
@@ -11,8 +12,15 @@ class CategoriesController < ApplicationController
       format.html { render :show }
       format.json { render json: @recipes, status: 200 }
     end
-
   end
+
+  def create
+    @category = Category.create(category_params)
+    if @category.save
+      render json: @category
+    end
+  end
+
 
   def sort_by_popularity
     @categories = Category.sort_by_popularity
@@ -22,6 +30,11 @@ class CategoriesController < ApplicationController
   def sort_ABC
     @categories = Category.sort_ABC
     render :index
+  end
+
+  private
+  def category_params
+    params.require(:category).permit(:name)
   end
 
 end

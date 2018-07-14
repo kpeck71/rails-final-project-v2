@@ -6,11 +6,20 @@
     <ul class="list-group">
       <% @categories.each do |category| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        <a href="#" class="load-recipes" id="<%=category.id%>"><%= category.name %></a>
+        <a href="#" class="load-recipes"><%= category.name %></a>
         <span class="badge badge-primary badge-pill"><%= pluralize(category.recipes.count, "recipe") %></span>
       </li>
       <% end %>
     </ul>
   </div>
   <div class="recipes-container card bg-light mb-3" style="max-width: 20%;">
+
+  <div>
+    <%= form_for @category do |f| %>
+      <%= f.label "Name", :class => "h4" %>
+      <%= f.text_field :name %>
+      <%= f.submit :class =>"btn btn-primary", :value => "Add" %>
+    <% end %>
+  </div>
+
 </div>

@@ -1,51 +1,18 @@
 <div class="card-header">
-  <%= @recipe.name %>
-</div>
-<a href="#" class="js-prev" data-id="<%=@recipe.id%>">...Previous Recipe</a>
-<a href="#" class="js-next" data-id="<%=@recipe.id%>">Next Recipe...</a>
-<div class="recipeIngredients"><h3>Ingredients</h3>
-  <ul class="ingredientsList"><% @recipe.ingredients.each do |recipe| %>
-  <li><%= recipe.name %></li>
-  <% end %>
-</div>
-</ul>
-
-<div><h3>Instructions:</h3>
-<p class="recipeInstructions"><%= @recipe.instructions %></p>
+  <h4><%= @recipe.name %></h4>
 </div>
 
+<div>
+  <a href="#" class="js-prev" data-id="<%=@recipe.id%>">...Previous Recipe</a>
+  <a href="#" class="js-next" data-id="<%=@recipe.id%>">Next Recipe...</a>
+  <div class="recipeIngredients"><h3>Ingredients:</h3>
+    <ul class="ingredientsList"><% @recipe.ingredients.each do |ingredient| %>
+    <li><%= link_to ingredient.name, ingredient_path(ingredient) %></li>
+    <% end %>
+  </div>
+  </ul>
 
-
-
-<script type="text/javascript">
-function loadRecipes(data) {
-  $(".card-header").text(data["name"]);
-  $(".ingredientsList").text("");
-  data["ingredients"].forEach(function(ingredient) {
-    name = ingredient.name
-    $(".ingredientsList").append(`<li>${name}</li>`);
-  })
-  $(".recipeInstructions").text(data["instructions"]);
-  // re-set the id to current on the link
-  $(".js-next").attr("data-id", data["id"]);
-  $(".js-prev").attr("data-id", data["id"]);
-}
-
-$(function () {
-  $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/recipes/" + nextId + ".json", function(data) {
-      loadRecipes(data);
-    });
-    event.preventDefault();
-  });
-
-  $(".js-prev").on("click", function() {
-    var prevId = parseInt($(".js-prev").attr("data-id")) - 1;
-    $.get("/recipes/" + prevId + ".json", function(data) {
-      loadRecipes(data);
-    });
-    event.preventDefault();
-  });
-});
-</script>
+  <div><h3>Instructions:</h3>
+  <p class="recipeInstructions"><%= @recipe.instructions %></p>
+  </div>
+</div>
