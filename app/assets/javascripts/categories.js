@@ -44,7 +44,6 @@ $(function () {
   $("a.load-recipes").on("click", function() {
     var div = $(".recipes-container")
     var categoryId = this.id
-
     $.get("/categories/" + categoryId + ".json").success(function(recipes) {
       div.html("")
       recipes.forEach(function(recipe) {
