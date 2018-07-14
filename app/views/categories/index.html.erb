@@ -2,7 +2,7 @@
   <h1>All Categories</h1>
   <p><%= link_to 'Sort by Most Popular',sort_by_popularity_categories_path %></p>
   <p><%= link_to 'Sort by Name',sort_ABC_categories_path %></p>
-  <div class="categories-container card bg-light mb-3" style="max-width: 75%;"">
+  <div class="categories-container card bg-light mb-3" style="max-width: 75%">
     <ul class="list-group">
       <% @categories.each do |category| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -14,7 +14,8 @@
   </div>
   <div class="recipes-container card bg-light mb-3" style="max-width: 20%;">
 
-  <div>
+  <p><a href ="#" class="add-new-category">+ New Category</a></p>
+  <div id = "new-category-container" style="display:none">
     <%= form_for @category do |f| %>
       <%= f.label "Name", :class => "h4" %>
       <%= f.text_field :name %>
@@ -22,4 +23,4 @@
     <% end %>
   </div>
 
-</div>
+  </div>
