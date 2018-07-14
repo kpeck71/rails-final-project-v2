@@ -19,6 +19,8 @@ class RecipeIngredientsController < ApplicationController
     render json: @recipe_ingredient, status: 200
   end
 
+  def create
+  end
   def update
     @recipe_ingredient = RecipeIngredient.find(params[:id])
     @recipe = @recipe_ingredient.recipe

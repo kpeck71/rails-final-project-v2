@@ -16,22 +16,6 @@
 
 <script type="text/javascript">
 
-function User(name, recipes) {
-  this.name = name
-  this.recipes = recipes
-  this.recipes_count = recipes_count
-};
-
-User.prototype.formatUser= function() {
-  userHTML = `<li>${this.name}</li><p>New format</p>`
-  return userHTML
-};
-
-User.prototype.formatRecipes = function() {
-  recipeHTML = `<ul>${this.recipes}.each do |recipe| </ul><li>${recipe.name}</li>`
-  return recipeHTML
-}
-
 $(function () {
   $('.most-prolific').on("click", function() {
   $.get("/users/most_recipes.json", function(data) {
