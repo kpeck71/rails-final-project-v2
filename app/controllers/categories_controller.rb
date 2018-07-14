@@ -1,11 +1,17 @@
 class CategoriesController < ApplicationController
-  def show
-    @category = Category.find(params[:id])
-  end
 
   def index
     @categories = Category.all
-    render json: @categories
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    @recipes = @category.recipes
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @recipes, status: 200 }
+    end
+
   end
 
   def sort_by_popularity
@@ -17,4 +23,5 @@ class CategoriesController < ApplicationController
     @categories = Category.sort_ABC
     render :index
   end
+
 end
