@@ -6,17 +6,20 @@ Specs:
 /recipes/:id
 
 - [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
-/categories
+View a category's recipes on the category page
 
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
-/categories
+/categories has many recipes
 
 - [x] Use your Rails API and a form to create a resource and render the response without a page refresh.
-/categories
+New category on /categories
 
 - [x] Translate JSON responses into js model objects.
 Category and Recipe on /categories pages
 - [x] At least one of the js model objects must have at least one method added by your code to the prototype.
+Ingredient.prototype.formatIngredient
+Category.prototype.renderCategory
+Recipe.prototype.formatRecipe
 
 Confirm
 - [x] You have a large number of small Git commits
