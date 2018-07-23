@@ -24,11 +24,13 @@ class CategoriesController < ApplicationController
 
   def sort_by_popularity
     @categories = Category.sort_by_popularity
+    @category = Category.new
     render :index
   end
 
   def sort_ABC
     @categories = Category.sort_ABC
+    @category = Category.new
     render :index
   end
 
