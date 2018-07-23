@@ -26,9 +26,11 @@ $(function () {
 
   $("form#new_category").on("submit", function() {
     event.preventDefault();
-    var $form = $(this);
-    var action = $form.attr("action");
-    var params = $form.serialize();
+    // var $form = $(this);
+    debugger
+    var action = this.action;
+    var params = $(this).serialize();
+    //JSON.stringify - for later
     $.ajax({
       url: action,
       data: params,
@@ -46,6 +48,17 @@ $(function () {
     var categoryId = this.id
     $.get("/categories/" + categoryId + ".json").success(function(recipes) {
       div.html("")
+      recipes.sort(function(a, b) {
+        var nameA = a.name.toUpperCase(); 
+        var nameB = b.name.toUpperCase(); 
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
       recipes.forEach(function(recipe) {
         var oneRecipe = new Recipe(recipe)
         var recipeHTML = oneRecipe.formatRecipe()
