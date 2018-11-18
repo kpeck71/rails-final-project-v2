@@ -1,4 +1,3 @@
-require 'rails_helper'
 require 'capybara/rspec'
 
 RSpec.feature "Recipe creation" do
