@@ -1,17 +1,7 @@
-<!-- <h3><%= link_to "See All Recipes", recipes_path, :class => 'load_recipes' %></h3> -->
-<!-- <h5><%= link_to "Recipe with Most Ingredients", recipes_most_ingredients_path %></h5> -->
-<!--will load this automatically on page later instead of redirecting to new page-->
-
-<div class="card-header">
-  <div class="recipe-title"></div>
-  <a href="#" class="most-ingred-link">Recipe with Most Ingredients</a>
-  <a href="#" class="all-recipes-link"></a>
-</div>
-
 <div class="all-recipes-container">
-  <ul>
+  <ul class="list-group">
     <% Recipe.all.each do |recipe| %>
-      <li><%= link_to recipe.name, recipe_path(recipe) %><br></br></li>
+      <li class="list-group-item list-group-item-action"><%= link_to recipe.name, recipe_path(recipe) %><br></br></li>
     <% end %>
   </ul>
 </div>

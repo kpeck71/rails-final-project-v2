@@ -18,6 +18,7 @@
         <li><%= link_to "Sign Up", signup_path, class: "nav-link" %></li>
         <li><%= link_to "Log In", login_path, class: "nav-link" %></li>
       <% end %>
+    </ul>
 
     <div class="form-inline my-2 my-lg-0">
       <%= form_tag(recipes_path, :method => 'get', id: "search-form") do %>
